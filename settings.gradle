@@ -1,0 +1,3 @@
+include ':app'
+include ':aroutermodule'
+include ':lib_base'
