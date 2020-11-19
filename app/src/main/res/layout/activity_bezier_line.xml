@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/lin_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <com.example.myapplication.customView.GiftView
+            android:id="@+id/gift_view"
+            android:layout_width="100dp"
+            android:layout_height="300dp"/>
+
+    <com.example.myapplication.customView.CustomSeekBar
+            android:id="@+id/custom_slide_bar"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:lineHeight="6dp"
+            custom:outColor="#3534A3"
+            custom:imageLow="@drawable/img_progress_blue"
+            custom:imageBig="@drawable/img_progress_red"
+            custom:imagewidth="20dp"
+            custom:imageheight="20dp"
+            />
+
+    <Button
+            android:id="@+id/btn_move_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="送礼物" />
+    <TextView
+             android:id="@+id/tv_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进度值是"/>
+    <Button
+            android:id="@+id/btn_move_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="moveTwo"
+            android:visibility="gone"/>
+</LinearLayout>

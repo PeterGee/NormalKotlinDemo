@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.example.myapplication">
+
+    <application
+            android:name=".application.PeterApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".customView.MainActivity"
+                android:label="@string/app_name">
+
+        </activity>
+
+        <activity
+                android:name=".customView.IndicatorDemoActivity"
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity">
+
+        </activity>
+        <activity android:name=".customView.BezierLineActivity"></activity>
+
+        <activity android:name=".workManager.WorkManagerActivity"></activity>
+
+        <activity android:name=".flowLayout.FlowLayoutActivity"></activity>
+
+        <activity android:name=".circlePicture.CirclePictureActivity"></activity>
+
+        <activity android:name=".jetpack_demo.dataBinding.ui.JetPackTestActivity"></activity>
+
+        <activity
+                android:name=".jetpack_demo.lifeCycle.LifeCycleDemoActivity"
+                android:screenOrientation="fullSensor"></activity>
+
+        <activity android:name=".navigation.NavigationActivity"></activity>
+
+
+        <activity android:name=".router.ARouterTestActivity">
+
+        </activity>
+        <activity android:name=".router.RouterSecondActivity" />
+        <activity android:name=".testAcivity.MainActivity"></activity>
+        <activity android:name=".testAcivity.ActivityOne"/>
+        <activity android:name=".testAcivity.ParseActivity"/>
+        <activity android:name=".testAcivity.TestActivity1"/>
+        <activity android:name=".testAcivity.TestInterceptorActivity"/>
+        <activity android:name=".testAcivity.TestWebview"/>
+        <activity android:name=".testAcivity.UrlSchemeActivity"/>
+        <activity android:name=".testAcivity.ActivityResult"/>
+        <activity android:name=".dataStore.DataStoreDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+
+</manifest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.example.myapplication.customView.DrawableLeftCenterTextView
+            android:id="@+id/tv_drawable_left"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic2"
+            android:text="测试"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+    <WebView
+            android:id="@+id/wv_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</LinearLayout>
