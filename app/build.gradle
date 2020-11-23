@@ -33,7 +33,9 @@ android {
     dataBinding {
         enabled = true
     }
-
+    lintOptions {
+        enable 'Interoperability'
+    }
 
 }
 

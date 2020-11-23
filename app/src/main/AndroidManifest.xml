@@ -52,7 +52,7 @@
         <activity android:name=".testAcivity.TestWebview"/>
         <activity android:name=".testAcivity.UrlSchemeActivity"/>
         <activity android:name=".testAcivity.ActivityResult"/>
-        <activity android:name=".dataStore.DataStoreDemoActivity">
+        <activity android:name=".surfaceView.SurfaceViewDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
