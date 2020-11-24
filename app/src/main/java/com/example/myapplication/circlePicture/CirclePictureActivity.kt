@@ -64,7 +64,7 @@ class PicAdapter : RecyclerView.Adapter<MyHolder> {
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         Glide.with(mContext).load(this.mList[position])
-            .transform(CenterCrop(mContext), GlideRoundTransformHelper(mContext, 10))
+            .transform(CenterCrop(), GlideRoundTransformHelper(mContext, 10))
             .into(holder.imgPictureItem)
     }
 
