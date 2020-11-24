@@ -6,7 +6,7 @@ import android.webkit.WebView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.myapplication.ARouterConstants;
+import com.example.myapplication.router.ARouterConstants;
 import com.example.myapplication.R;
 
 @Route(path = ARouterConstants.COM_URL)

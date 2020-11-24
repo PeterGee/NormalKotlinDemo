@@ -10,8 +10,8 @@ import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
-import com.example.myapplication.ARouterConstants;
-import com.example.myapplication.MainLooper;
+import com.example.myapplication.router.ARouterConstants;
+import com.example.myapplication.router.MainLooper;
 import com.example.myapplication.testAcivity.MainActivity;
 
 @Interceptor(priority = 7, name = "TestInterceptor")

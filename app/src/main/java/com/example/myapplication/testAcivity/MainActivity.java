@@ -16,7 +16,7 @@ import com.alibaba.android.arouter.core.LogisticsCenter;
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.myapplication.ARouterConstants;
+import com.example.myapplication.router.ARouterConstants;
 import com.example.myapplication.R;
 import com.example.myapplication.entity.Person;
 import com.example.myapplication.entity.TestObj;

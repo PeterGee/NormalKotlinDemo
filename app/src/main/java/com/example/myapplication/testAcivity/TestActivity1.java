@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.myapplication.ARouterConstants;
+import com.example.myapplication.router.ARouterConstants;
 import com.example.myapplication.R;
 
 @Route(path = ARouterConstants.TEST_ACTIVITY1)

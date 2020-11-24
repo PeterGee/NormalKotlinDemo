@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.myapplication.ARouterConstants;
+import com.example.myapplication.router.ARouterConstants;
 import com.example.myapplication.R;
 
 @Route(path = ARouterConstants.COM_ACTIVITY_RESULT)

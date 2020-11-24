@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.myapplication.ARouterConstants;
+import com.example.myapplication.router.ARouterConstants;
 
 /**
  * @author xujun  on 2/7/2018.
