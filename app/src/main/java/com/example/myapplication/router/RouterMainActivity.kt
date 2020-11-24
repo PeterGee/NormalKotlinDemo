@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.Postcard
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.facade.callback.NavigationCallback
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.lib_base.constant.ExtraKeyConstant
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_router_main.*
  * @author qipeng
  * @desc
  */
+@Route(path = PathConstant.AROUTER_MODULE_MAIN_ACTIVITY)
 class RouterMainActivity : AppCompatActivity() {
     private val TAG="peter"
     override fun onCreate(savedInstanceState: Bundle?) {

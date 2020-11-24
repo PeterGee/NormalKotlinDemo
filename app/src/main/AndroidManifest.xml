@@ -39,25 +39,27 @@
 
         <activity android:name=".navigation.NavigationActivity"></activity>
 
+        <activity android:name=".router.RouterMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <activity android:name=".router.ARouterTestActivity">
 
         </activity>
         <activity android:name=".router.RouterSecondActivity" />
         <activity android:name=".testAcivity.MainActivity"></activity>
-        <activity android:name=".testAcivity.ActivityOne"/>
-        <activity android:name=".testAcivity.ParseActivity"/>
-        <activity android:name=".testAcivity.TestActivity1"/>
-        <activity android:name=".testAcivity.TestInterceptorActivity"/>
-        <activity android:name=".testAcivity.TestWebview"/>
-        <activity android:name=".testAcivity.UrlSchemeActivity"/>
-        <activity android:name=".testAcivity.ActivityResult"/>
-        <activity android:name=".surfaceView.SurfaceViewDemoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".testAcivity.ActivityOne" />
+        <activity android:name=".testAcivity.ParseActivity" />
+        <activity android:name=".testAcivity.TestActivity1" />
+        <activity android:name=".testAcivity.TestInterceptorActivity" />
+        <activity android:name=".testAcivity.TestWebview" />
+        <activity android:name=".testAcivity.UrlSchemeActivity" />
+        <activity android:name=".testAcivity.ActivityResult" />
+        <activity android:name=".surfaceView.SurfaceViewDemoActivity"></activity>
 
     </application>
 
