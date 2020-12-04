@@ -40,10 +40,7 @@
         <activity android:name=".navigation.NavigationActivity"></activity>
 
         <activity android:name=".router.RouterMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
 
@@ -61,6 +58,12 @@
         <activity android:name=".testAcivity.ActivityResult" />
         <activity android:name=".surfaceView.SurfaceViewDemoActivity"></activity>
 
+        <activity android:name=".touchablePop.CustomPopActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 
