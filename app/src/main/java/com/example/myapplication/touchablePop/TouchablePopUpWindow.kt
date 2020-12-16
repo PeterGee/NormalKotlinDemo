@@ -16,7 +16,7 @@ import kotlin.math.abs
  * @author qipeng
  * @desc
  */
-class TouchablePopUpWindow @JvmOverloads constructor(
+class TouchablePopUpWindow constructor(
     context: Context
 ) : PopupWindow(context) {
 
@@ -27,13 +27,11 @@ class TouchablePopUpWindow @JvmOverloads constructor(
     init {
         width = WindowManager.LayoutParams.MATCH_PARENT
         height = WindowManager.LayoutParams.MATCH_PARENT
-        // 设置bitmapDrawable 解决存在边缘问题
-        setBackgroundDrawable(BitmapDrawable())
+        setBackgroundDrawable(null)
         val mContentView = LayoutInflater.from(context).inflate(R.layout.touchable_pop, null)
         val mIvTop = mContentView.findViewById<ImageView>(R.id.iv_top)
         animationStyle = R.style.PopupWindowAnimation
         contentView = mContentView
-        // 全屏
         isClippingEnabled = false
 
         mIvTop.setOnTouchListener { _, event ->
@@ -44,12 +42,12 @@ class TouchablePopUpWindow @JvmOverloads constructor(
                     }
                     MotionEvent.ACTION_MOVE -> {
                         mDiffY = rawY.toInt() - mStartY
-                        // 越界处理
+                        // 限制方向
                         if (mDiffY > 0) mDiffY = 0
                         update(0, -mDiffY, -1, -1, true)
                     }
                     MotionEvent.ACTION_UP -> {
-                        // click 事件处理
+                        // click
                         if (abs(rawY.toInt() - mStartY) < 10) {
                             Toast.makeText(mContext, "clicked", Toast.LENGTH_SHORT).show()
                         } else {
