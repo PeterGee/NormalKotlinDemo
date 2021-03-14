@@ -37,6 +37,8 @@ class LiveDataDemoActivity : AppCompatActivity() {
         btnChange.setOnClickListener {
             userViewModel.userBean.postValue(User(name = "李四", age = 24))
         }
+
+
     }
 
     private fun initData() {

@@ -14,7 +14,6 @@ class UserViewModel : ViewModel() {
 
     val userBean = MutableLiveData<User>()
 
-
     /**
      * 获取用户数据
      */
@@ -25,9 +24,6 @@ class UserViewModel : ViewModel() {
             userBean.value = User("张三", 18)
         }
     }
-
-
-
 }
 
 

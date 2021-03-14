@@ -25,6 +25,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+            android:id="@+id/btnTransferChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="转换用户数据"
+            app:layout_constraintBottom_toTopOf="@+id/btnChange" />
+
+    <Button
             android:id="@+id/btnChange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
