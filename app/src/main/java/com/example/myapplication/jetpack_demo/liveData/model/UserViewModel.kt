@@ -26,5 +26,4 @@ class UserViewModel : ViewModel() {
     }
 }
 
-
 data class User(var name: String, var age: Int)

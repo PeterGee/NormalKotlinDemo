@@ -25,11 +25,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-            android:id="@+id/btnTransferChange"
+            android:id="@+id/btnMapChange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="转换用户数据"
+            android:text="Map转换数据"
+            app:layout_constraintBottom_toTopOf="@+id/btnSwitchMap" />
+
+    <Button
+            android:id="@+id/btnSwitchMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="WitchMap转换数据"
             app:layout_constraintBottom_toTopOf="@+id/btnChange" />
 
     <Button
