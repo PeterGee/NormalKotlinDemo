@@ -62,11 +62,15 @@
         <activity android:name=".touchablePop.CustomPopActivity"></activity>
 
         <activity android:name=".lamada.LamadaTestActivity">
+        </activity>
+
+        <activity android:name=".innerclass.InnerClassTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".innerclass.InnerClassTwo"/>
 
     </application>
 
