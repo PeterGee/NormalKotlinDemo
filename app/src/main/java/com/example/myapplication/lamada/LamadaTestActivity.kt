@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.activity_lamada_test.*
  * @desc lamada 测试类
  */
 class LamadaTestActivity : AppCompatActivity() {
+
+    var list = arrayListOf(1, 2, 3, 4, 5)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lamada_test)
@@ -33,6 +36,12 @@ class LamadaTestActivity : AppCompatActivity() {
         // functionThree({ println("this is first inline func")},{ println("second inline func")})
         // functionFour({println("this is first func")return}, { println("this is second func")})
         //  functionFour({ println("调用内联函数")},{ println("内联函数中的下一个参数")})
+
+
+        list.forEach { index ->
+            print(index)
+        }
+
 
         val text = "山不在高，有仙则名。水不在深，有龙则灵。斯是陋室，惟吾德馨。苔痕上阶绿，草色入帘青。谈笑有鸿儒，" +
                 "往来无白丁。可以调素琴，阅金经。无丝竹之乱耳，无案牍之劳形。南阳诸葛庐，西蜀子云亭。孔子云：何陋之有？"
