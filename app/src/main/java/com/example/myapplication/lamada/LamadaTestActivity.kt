@@ -7,11 +7,13 @@ import android.text.SpannableStringBuilder
 import android.text.TextPaint
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.ViewTreeObserver
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_lamada_test.*
+import kotlin.math.roundToInt
 
 /**
  * @date 2021/3/17
@@ -21,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_lamada_test.*
 class LamadaTestActivity : AppCompatActivity() {
 
     var list = arrayListOf(1, 2, 3, 4, 5)
+    val listTwo = arrayOf(1..5, 6..10)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,19 +42,50 @@ class LamadaTestActivity : AppCompatActivity() {
 
 
         list.forEach { index ->
-            print(index)
+            println(index)
+        }
+        list.map {
+            (it * 2).toString()
+        }.forEach(::println)
+
+        list.map {
+            it.toDouble()
+        }.forEach(::println)
+
+        val mergeList = listTwo.flatMap { intRange ->
+            intRange.map { intElement ->
+                "No.$intElement"
+            }
+        }
+
+        mergeList.forEach {
+            print("$it")
         }
 
 
         val text = "山不在高，有仙则名。水不在深，有龙则灵。斯是陋室，惟吾德馨。苔痕上阶绿，草色入帘青。谈笑有鸿儒，" +
                 "往来无白丁。可以调素琴，阅金经。无丝竹之乱耳，无案牍之劳形。南阳诸葛庐，西蜀子云亭。孔子云：何陋之有？"
         tvNormal.maxLines = 3
-        toggleEllipsize(this,
+        toggleEllipsize(
+            this,
             tvNormal, 2,
             text,
             "展开全部",
-            R.color.color_E3AC62, false)
-        tvFolder.text = text
+            R.color.color_E3AC62, false
+        )
+        // tvFolder.text = text
+
+
+        Log.d("tag", formattedNumber(10003))
+        Log.d("tag", formattedNumber(20003))
+    }
+
+
+    private fun formattedNumber(number: Int): String {
+        val floatNumber = number.toFloat() / 10000
+        val str = floatNumber.roundToInt()
+        // val str = String.format("%.1f", floatNumber)
+        return "$str" + "万"
     }
 
     fun addNumber(a: Int, b: Int, mLamada: (Int) -> Unit) {
@@ -118,16 +152,22 @@ class LamadaTestActivity : AppCompatActivity() {
                     val availableTextWidth: Float =
                         (textView.width - paddingLeft - paddingRight) *
                                 minLines - moreText
-                    val ellipsizeStr: CharSequence = TextUtils.ellipsize(originText, paint,
-                        availableTextWidth, TextUtils.TruncateAt.END)
+                    val ellipsizeStr: CharSequence = TextUtils.ellipsize(
+                        originText, paint,
+                        availableTextWidth, TextUtils.TruncateAt.END
+                    )
                     if (ellipsizeStr.length < originText.length) {
                         val temp: CharSequence = ellipsizeStr.toString() + endText
                         val ssb = SpannableStringBuilder(temp)
-                        ssb.setSpan(ForegroundColorSpan(context.resources
-                            .getColor(endColorID)),
+                        ssb.setSpan(
+                            ForegroundColorSpan(
+                                context.resources
+                                    .getColor(endColorID)
+                            ),
                             temp.length - endText.length,
                             temp.length,
-                            Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                        )
                         textView.text = ssb
                     } else {
                         textView.text = originText
