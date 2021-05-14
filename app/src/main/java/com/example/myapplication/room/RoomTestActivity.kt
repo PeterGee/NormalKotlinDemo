@@ -3,12 +3,9 @@ package com.example.myapplication.room
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.myapplication.R
 import com.example.myapplication.room.model.User
 import com.example.myapplication.room.model.UserDao
-import kotlinx.android.synthetic.main.activity_room_test.*
 
 /**
  * @date 2021/4/14
@@ -33,7 +30,7 @@ class RoomTestActivity : AppCompatActivity() {
     }
 
     private fun migrationDb() {
-        Room.databaseBuilder(this, AppDatabase::class.java, DB_NAME)
+    /*    Room.databaseBuilder(this, AppDatabase::class.java, DB_NAME)
             .createFromAsset("database/myapp.db")
             .fallbackToDestructiveMigration()
             .build()
@@ -62,12 +59,12 @@ class RoomTestActivity : AppCompatActivity() {
                     database.execSQL("ALTER TABLE new_Song RENAME TO Song")
                 }
 
-            })
+            })*/
 
     }
 
     private fun initView() {
-        var mContent = "暂无数据"
+   /*     var mContent = "暂无数据"
         btnAdd.setOnClickListener {
             mDao?.insertUsers(mUser)
         }
@@ -84,6 +81,7 @@ class RoomTestActivity : AppCompatActivity() {
             }
         }
         tvContent.text = mContent
+        */
     }
 
     companion object {
