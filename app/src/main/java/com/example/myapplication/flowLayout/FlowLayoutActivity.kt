@@ -3,6 +3,7 @@ package com.example.myapplication.flowLayout
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityFlowLayoutBinding
@@ -35,6 +36,31 @@ class FlowLayoutActivity :AppCompatActivity(){
             R.drawable.dog01,R.drawable.dog02,R.drawable.dog03,R.drawable.dog04,R.drawable.dog05)
         val layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         rv_flow.layoutManager=layoutManager
-        rv_flow.adapter=FlowLayoutAdapter(this,data)
+        val mAdapter=FlowLayoutAdapter(this,data)
+        rv_flow.adapter=mAdapter
+        val result=DiffUtil.calculateDiff(MyCallBack(data, data))
+        // 刷新diff条目
+       // mAdapter.news = news
+        result.dispatchUpdatesTo(mAdapter)
+    }
+
+    inner class MyCallBack(oldList:List<Int>,newList:List<Int>):DiffUtil.Callback(){
+        private val mOldList=oldList
+        private val mNewList=newList
+        override fun getOldListSize(): Int {
+         return mOldList.size
+        }
+
+        override fun getNewListSize(): Int {
+            return mNewList.size
+        }
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+           return mOldList[oldItemPosition]==mNewList[newItemPosition]
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return mOldList[oldItemPosition]==mNewList[newItemPosition]
+        }
     }
 }
