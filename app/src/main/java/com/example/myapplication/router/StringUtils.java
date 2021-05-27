@@ -3,9 +3,6 @@ package com.example.myapplication.router;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author xujun  on 4/7/2018.
- */
 public class StringUtils {
 
     public static String replaceBlank(String str) {

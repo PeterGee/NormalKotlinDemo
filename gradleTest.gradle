@@ -1,0 +1,14 @@
+def a=1
+println("a is $a")
+
+task method {
+    addMethod(1,2)
+}
+def addMethod(int a,int b){
+    a+b
+}
+
+def map = ['a':1, 'b':2, 'c':3]
+for (v in map.values()){
+    println(v)
+}

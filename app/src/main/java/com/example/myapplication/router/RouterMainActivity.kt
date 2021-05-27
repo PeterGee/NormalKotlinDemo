@@ -97,7 +97,7 @@ class RouterMainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode== REQUEST_CODE&&resultCode== RESULT_CODE){
-            Log.d(TAG,data?.getStringExtra(ExtraKeyConstant.KEY_SECOND_ACTIVITY_EXTRA))
+            data?.getStringExtra(ExtraKeyConstant.KEY_SECOND_ACTIVITY_EXTRA)?.let { Log.d(TAG, it) }
         }
     }
 

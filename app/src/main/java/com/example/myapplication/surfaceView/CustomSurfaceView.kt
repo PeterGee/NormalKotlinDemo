@@ -71,4 +71,5 @@ class CustomSurfaceView @JvmOverloads constructor(
     companion object {
         const val TAG = "CustomSurfaceView"
     }
+
 }
