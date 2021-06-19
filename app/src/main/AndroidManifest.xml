@@ -68,16 +68,21 @@
         <activity android:name=".innerclass.InnerClassTestActivity">
 
         </activity>
-        <activity android:name=".innerclass.InnerClassTwo"/>
+
+        <activity android:name=".innerclass.InnerClassTwo" />
+        <activity android:name=".refreshlayout.RefreshTestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <activity android:name=".room.RoomTestActivity">
         </activity>
 
         <activity android:name=".tablayout.TableLayoutActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 
