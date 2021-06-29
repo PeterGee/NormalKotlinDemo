@@ -1,5 +1,7 @@
-apply plugin: 'groovy'
-apply plugin: 'maven'
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+}
 
 dependencies {
     //gradle sdk
@@ -13,13 +15,14 @@ repositories {
 }
 
 //group和version在后面使用自定义插件的时候会用到
-group='com.peter.groovy'
-version='1.0.0'
+group = 'com.peter.groovy'
+version = '1.0.0'
 
-uploadArchives {
+/*
+publishing {
     repositories {
-        mavenDeployer {
+        maven {
             repository(url: uri('./my-plugin'))
         }
     }
-}
+}*/
