@@ -6,7 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-apply plugin: 'com.peter.gradle'
 
 android {
     compileSdkVersion 30
@@ -61,7 +60,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.core:core-ktx:1.3.1'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
@@ -69,15 +68,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
     //增加workManager管理后台任务
     implementation "android.arch.work:work-runtime:1.0.1"
     implementation "android.arch.work:work-firebase:1.0.0-alpha11"
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     // navigation
-    def nav_version = "2.3.0-alpha01"
+    def nav_version = "2.3.0"
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -115,4 +114,6 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
+    // okHttp
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
 }
