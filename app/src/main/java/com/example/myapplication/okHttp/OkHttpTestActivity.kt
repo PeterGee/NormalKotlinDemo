@@ -9,6 +9,7 @@ import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.lib_base.constant.connectiontime.NetworkListener
 import com.example.myapplication.R
 import com.example.myapplication.okHttp.bean.Person
 import com.example.myapplication.touchablePop.SearchPop
@@ -17,9 +18,7 @@ import kotlinx.android.synthetic.main.activity_okhttp_test.*
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
-import razerdp.basepopup.BasePopupWindow
 import java.io.IOException
-import java.util.logging.Logger
 
 /**
  * @date 2021/6/30
@@ -30,8 +29,9 @@ class OkHttpTestActivity : AppCompatActivity() {
 
     // okHttpClient
     private val mClient = getOkClient()
-    private var mUrl = "https://www.baidu.com"
+    private var mUrl = "https://publicobject.com/helloworld.txt"
     private val TAG = "peter"
+    private var mRequest:Request?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +51,7 @@ class OkHttpTestActivity : AppCompatActivity() {
     }
 
     private fun intiView() {
+        mRequest = Request.Builder().url(mUrl).build()
         btnGet.setOnClickListener {
             doGetRequest()
         }
@@ -67,20 +68,21 @@ class OkHttpTestActivity : AppCompatActivity() {
     }
 
     private fun doGetRequest() {
-        val mRequest = Request.Builder().url(mUrl).build()
-        mClient.newCall(mRequest).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d(TAG, "fail e===${e.message}   cause=== ${e.cause}")
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                Log.d(TAG, "success")
-                runOnUiThread {
-                    tvResponseContent.text = response.toString()
+        mRequest?.let {
+            mClient.newCall(it).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.d(TAG, "fail e===${e.message}   cause=== ${e.cause}")
                 }
-            }
 
-        })
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d(TAG, " get success  response=== ${response.body.toString()}")
+                    runOnUiThread {
+                        tvResponseContent.text = response.toString()
+                    }
+                }
+
+            })
+        }
 
     }
 
@@ -88,25 +90,28 @@ class OkHttpTestActivity : AppCompatActivity() {
         val mPerson = Person(name = "张三", age = 18)
         val jsonData = "application/json; charset=utf-8".toMediaType()
         val mRequestBody = Gson().toJson(mPerson).toRequestBody(jsonData)
-        val mRequest = Request.Builder().url(mUrl).post(mRequestBody).build()
-        mClient.newCall(mRequest).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d(TAG, " post fail")
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                Log.d(TAG, " post success")
-                runOnUiThread {
-                    tvResponseContent.text = response.toString()
+        // val mRequest = Request.Builder().url(mUrl).post(mRequestBody).build()
+        mRequest?.let {
+            mClient.newCall(it).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.d(TAG, " post fail")
                 }
-            }
 
-        })
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d(TAG, " post success  response=== ${response.body.toString()}")
+                    runOnUiThread {
+                        tvResponseContent.text = response.toString()
+                    }
+
+                }
+
+            })
+        }
 
     }
 
     private fun getOkClient(): OkHttpClient {
-        return OkHttpClient()
+        return OkHttpClient.Builder().eventListener(OkEventListener()).build()
     }
 
     override fun onRequestPermissionsResult(
