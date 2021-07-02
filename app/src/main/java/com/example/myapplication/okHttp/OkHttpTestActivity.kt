@@ -2,18 +2,22 @@ package com.example.myapplication.okHttp
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.myapplication.R
 import com.example.myapplication.okHttp.bean.Person
+import com.example.myapplication.touchablePop.SearchPop
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_okhttp_test.*
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
+import razerdp.basepopup.BasePopupWindow
 import java.io.IOException
 import java.util.logging.Logger
 
@@ -27,6 +31,7 @@ class OkHttpTestActivity : AppCompatActivity() {
     // okHttpClient
     private val mClient = getOkClient()
     private var mUrl = "https://www.baidu.com"
+    private val TAG = "peter"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +41,12 @@ class OkHttpTestActivity : AppCompatActivity() {
     }
 
     private fun requestPermission() {
-       if (ContextCompat.checkSelfPermission(this,Manifest.permission.INTERNET)== PackageManager.PERMISSION_GRANTED){
-           return
-        }else{
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.INTERNET),0)
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.INTERNET), 0)
         }
     }
 
@@ -50,17 +57,24 @@ class OkHttpTestActivity : AppCompatActivity() {
         btnPost.setOnClickListener {
             doPostRequest()
         }
+        val popup = SearchPop(this)
+        btnShowPop.setOnClickListener {
+            popup.setBackgroundColor(Color.TRANSPARENT)
+           // popup.setPopupGravityMode(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR)
+            popup.popupGravity = Gravity.BOTTOM
+            popup.showPopupWindow(btnShowPop)
+        }
     }
 
     private fun doGetRequest() {
         val mRequest = Request.Builder().url(mUrl).build()
         mClient.newCall(mRequest).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.d("peter", "fail e===${e.message}   cause=== ${e.cause}")
+                Log.d(TAG, "fail e===${e.message}   cause=== ${e.cause}")
             }
 
             override fun onResponse(call: Call, response: Response) {
-                Log.d("peter", "success")
+                Log.d(TAG, "success")
                 runOnUiThread {
                     tvResponseContent.text = response.toString()
                 }
@@ -77,11 +91,11 @@ class OkHttpTestActivity : AppCompatActivity() {
         val mRequest = Request.Builder().url(mUrl).post(mRequestBody).build()
         mClient.newCall(mRequest).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.d("peter", " post fail")
+                Log.d(TAG, " post fail")
             }
 
             override fun onResponse(call: Call, response: Response) {
-                Log.d("peter", " post success")
+                Log.d(TAG, " post success")
                 runOnUiThread {
                     tvResponseContent.text = response.toString()
                 }
@@ -100,10 +114,10 @@ class OkHttpTestActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-       when(requestCode){
-           0->{
-                Log.d("peter","请求权限成功")
-           }
-       }
+        when (requestCode) {
+            0 -> {
+                Log.d(TAG, "请求权限成功")
+            }
+        }
     }
 }
