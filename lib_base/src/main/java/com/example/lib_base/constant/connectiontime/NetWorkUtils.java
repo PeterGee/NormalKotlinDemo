@@ -14,9 +14,6 @@ import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
-
-import com.leju.platform.app.LejuApplication;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,6 +23,7 @@ public final class NetWorkUtils {
     public final static long MINUTE = SECOND * 60;
     public final static long HOUR = MINUTE * 60;
     public final static long DAY = HOUR * 24;
+    private static Context mContext;
 
     public static void copyToClipBoard(Context context , String content){
         if (!TextUtils.isEmpty(content)){
@@ -105,7 +103,7 @@ public final class NetWorkUtils {
     }
 
     private static void check(String key, String url , Map<String , Long> traceItemList){
-        Context context = LejuApplication.getApplication();
+        Context context = mContext;
         if (context == null) {
             NetLogUtils.d("OkNetworkMonitor", "context is null.");
             return;

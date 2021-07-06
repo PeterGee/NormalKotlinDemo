@@ -3,6 +3,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         package="com.example.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
             android:name=".application.PeterApplication"
             android:allowBackup="true"
@@ -70,19 +72,15 @@
         </activity>
 
         <activity android:name=".innerclass.InnerClassTwo" />
-        <activity android:name=".refreshlayout.RefreshTestActivity">
+        <activity android:name=".refreshlayout.RefreshTestActivity"></activity>
+        <activity android:name=".room.RoomTestActivity"></activity>
+        <activity android:name=".tablayout.TableLayoutActivity"></activity>
+
+        <activity android:name=".okHttp.OkHttpTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <activity android:name=".room.RoomTestActivity">
-        </activity>
-
-        <activity android:name=".tablayout.TableLayoutActivity">
-
         </activity>
     </application>
 

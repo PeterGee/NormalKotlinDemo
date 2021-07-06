@@ -1,7 +1,9 @@
 package com.example.myapplication.workManager
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.work.*
@@ -22,6 +24,7 @@ class WorkManagerActivity : AppCompatActivity() {
         initView()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun initView() {
         val workOne = OneTimeWorkRequest.Builder(SubWorkerOne::class.java).build()
         val workTwo = OneTimeWorkRequest.Builder(SubWorkerTwo::class.java).build()
@@ -74,7 +77,7 @@ class WorkManagerActivity : AppCompatActivity() {
                 WorkManager.getInstance().getWorkInfoByIdLiveData(workConstraint.id)
             constraintStatus.observe(this, Observer {
                 // 打印constraintStatus状态
-                Log.d(TAG, it?.state?.name)
+                it?.state?.name?.let { it1 -> Log.d(TAG, it1) }
                 if (it.state.isFinished) {
                     Log.d(TAG, "isFinished")
                 }

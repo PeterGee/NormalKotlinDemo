@@ -38,15 +38,15 @@ class CustomSurfaceView @JvmOverloads constructor(
     }
 
 
-    override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {
+    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
         Log.d(TAG, "surfaceChanged")
     }
 
-    override fun surfaceDestroyed(holder: SurfaceHolder?) {
+    override fun surfaceDestroyed(holder: SurfaceHolder) {
         Log.d(TAG, "surfaceDestroyed")
     }
 
-    override fun surfaceCreated(holder: SurfaceHolder?) {
+    override fun surfaceCreated(holder: SurfaceHolder) {
         Log.d(TAG, "surfaceCreated")
         Thread(Runnable { drawView() }).start()
     }
@@ -55,8 +55,8 @@ class CustomSurfaceView @JvmOverloads constructor(
         mCanvas = mSurfaceHolder?.lockCanvas()
         try {
             mCanvas?.apply {
-                drawCircle(500f, 500f, 300f, mPaint)
-                drawCircle(100f, 100f, 20f, mPaint)
+                mPaint?.let { drawCircle(500f, 500f, 300f, it) }
+                mPaint?.let { drawCircle(100f, 100f, 20f, it) }
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -71,5 +71,6 @@ class CustomSurfaceView @JvmOverloads constructor(
     companion object {
         const val TAG = "CustomSurfaceView"
     }
+
 
 }
