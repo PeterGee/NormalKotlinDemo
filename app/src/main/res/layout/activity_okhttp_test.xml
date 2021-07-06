@@ -12,16 +12,16 @@
             android:text="GET请求" />
 
     <Button
+            android:id="@+id/btnGetTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GET请求2" />
+
+    <Button
             android:id="@+id/btnPost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="post请求" />
-
-    <Button
-            android:id="@+id/btnShowPop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="显示Pop" />
 
     <TextView
             android:id="@+id/tvResponseContent"
@@ -29,5 +29,5 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_black"
             android:textSize="16sp"
-            tool:text="响应数据" />
+            tool:text="响应数据:" />
 </androidx.appcompat.widget.LinearLayoutCompat>

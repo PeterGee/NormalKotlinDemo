@@ -6,26 +6,27 @@ import java.io.IOException
 import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.Proxy
+import java.util.concurrent.atomic.AtomicLong
 
 /**
- * @date 2021/7/2
+ * @date 2021/7/6
  * @author qipeng
  * @desc
  */
-class OkEventListener : EventListener() {
+class OkEventFactoryListener(callId:Long,startTime:Long) : EventListener() {
 
-    private val TAG = "tag"
-    private var callStartTime: Long = 0
+    private val TAG = "factory"
+    private var mCallStartNanos: Long = startTime
+    private val mCallId=callId
 
     override fun callStart(call: Call) {
         super.callStart(call)
-        callStartTime = System.currentTimeMillis()
-        mLog("callStart  url=== ${call.request().url}")
+        printEvent("callStart")
     }
 
     override fun callEnd(call: Call) {
         super.callEnd(call)
-        printEvent("callEnd  url===${call.request().url}")
+        printEvent("callEnd")
     }
 
     override fun dnsStart(call: Call, domainName: String) {
@@ -115,14 +116,27 @@ class OkEventListener : EventListener() {
         printEvent("responseBodyEnd")
     }
 
-
     private fun printEvent(name: String) {
-        val elapsedTime: Long = System.currentTimeMillis() - callStartTime
-        mLog("time=== $elapsedTime ms name=== $name")
+        val elapsedTime: Long = System.currentTimeMillis() - mCallStartNanos
+        mLog("callId== $mCallId  time=== $elapsedTime ms name=== $name")
     }
 
     private fun mLog(str: String) {
         Log.d(TAG, str)
+    }
+
+    companion object {
+        private val nextCallId: AtomicLong = AtomicLong(1L)
+        fun create(): Factory {
+            return object : Factory {
+                override fun create(call: Call): EventListener {
+                    val callId: Long = nextCallId.getAndIncrement()
+                    Log.d("factory", "callId==  $callId  url==${call.request().url}")
+                    return OkEventFactoryListener(callId,System.currentTimeMillis())
+                }
+
+            }
+        }
     }
 
 }
