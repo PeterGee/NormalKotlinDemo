@@ -22,6 +22,7 @@ class OkHttpTestActivity : AppCompatActivity() {
     private val TAG = "tag"
     private var mUrl = "https://publicobject.com/helloworld.txt"
     private var mUrl2 = "https://www.baidu.com/"
+    private var mUrl3 = "https://www.nytimes.com/"
 
     // okHttpClient
     private val mClient = getOkClient()
@@ -50,7 +51,8 @@ class OkHttpTestActivity : AppCompatActivity() {
 
     private fun initRequest() {
         mRequest = Request.Builder().url(mUrl).build()
-        mRequest2 = Request.Builder().url(mUrl2).build()
+       // mRequest2 = Request.Builder().url(mUrl2).build()
+        mRequest2 = Request.Builder().url(mUrl3).build()
     }
 
     private fun doGetRequest() {
