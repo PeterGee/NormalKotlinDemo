@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.myapplication.R
+import com.example.myapplication.okHttp.interceptor.LogInterceptor
 import kotlinx.android.synthetic.main.activity_okhttp_test.*
 import okhttp3.*
 import java.io.IOException
@@ -20,7 +21,7 @@ import java.io.IOException
 class OkHttpTestActivity : AppCompatActivity() {
 
     private val TAG = "tag"
-    private var mUrl = "https://publicobject.com/helloworld.txt"
+    private var mUrl = "https://www.publicobject.com/helloworld.txt"
     private var mUrl2 = "https://www.baidu.com/"
     private var mUrl3 = "https://www.nytimes.com/"
 
@@ -51,13 +52,13 @@ class OkHttpTestActivity : AppCompatActivity() {
 
     private fun initRequest() {
         mRequest = Request.Builder().url(mUrl).build()
-       // mRequest2 = Request.Builder().url(mUrl2).build()
-        mRequest2 = Request.Builder().url(mUrl3).build()
+        mRequest2 = Request.Builder().url(mUrl2).build()
+        // mRequest2 = Request.Builder().url(mUrl3).build()
     }
 
     private fun doGetRequest() {
         mRequest?.let {
-            mClient.newCall(it).enqueue(object : Callback {
+           mClient.newCall(it).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.d(TAG, "fail e===${e.message}   cause=== ${e.cause}")
                 }
@@ -65,6 +66,7 @@ class OkHttpTestActivity : AppCompatActivity() {
                 override fun onResponse(call: Call, response: Response) {
                     Log.d(TAG, " get success  response=== ${response.body.toString()}")
                     updateText(response)
+                    response.body?.close()
                 }
 
             })
@@ -81,7 +83,7 @@ class OkHttpTestActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     Log.d(TAG, " get success  response=== ${response.body.toString()}")
-                   updateText(response)
+                    updateText(response)
                 }
 
             })
@@ -113,17 +115,23 @@ class OkHttpTestActivity : AppCompatActivity() {
     }
 
     private fun getOkClient(): OkHttpClient {
+        // return OkHttpClient.Builder().addInterceptor(LogInterceptor()).build()
+        return OkHttpClient.Builder().addNetworkInterceptor(LogInterceptor()).build()
+    }
+
+    private fun eventListener() {
         // okEvent
-        return OkHttpClient.Builder().eventListener(OkEventListener()).build()
+        // return OkHttpClient.Builder().eventListener(OkEventListener()).build()
 
         // okEventFactory
-
-       // return OkHttpClient.Builder().eventListenerFactory(OkEventFactoryListener.create()).build()
+        // return OkHttpClient.Builder().eventListenerFactory(OkEventFactoryListener.create()).build()
     }
 
     private fun requestPermission() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.INTERNET
+            ) == PackageManager.PERMISSION_GRANTED
         ) {
             return
         } else {
