@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.myapplication.R
+import com.example.myapplication.okHttp.interceptor.CacheAgeInterceptor
+import com.example.myapplication.okHttp.interceptor.GzipRequestInterceptor
 import com.example.myapplication.okHttp.interceptor.LogInterceptor
 import kotlinx.android.synthetic.main.activity_okhttp_test.*
 import okhttp3.*
@@ -115,8 +117,17 @@ class OkHttpTestActivity : AppCompatActivity() {
     }
 
     private fun getOkClient(): OkHttpClient {
+        // 应用拦截器
         // return OkHttpClient.Builder().addInterceptor(LogInterceptor()).build()
-        return OkHttpClient.Builder().addNetworkInterceptor(LogInterceptor()).build()
+
+        // 网络拦截器
+        // return OkHttpClient.Builder().addNetworkInterceptor(LogInterceptor()).build()
+
+        // 压缩拦截器
+       // return OkHttpClient.Builder().addNetworkInterceptor(GzipRequestInterceptor()).build()
+
+       // 缓存拦截器
+        return OkHttpClient.Builder().addNetworkInterceptor(CacheAgeInterceptor()).build()
     }
 
     private fun eventListener() {

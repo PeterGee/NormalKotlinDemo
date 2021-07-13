@@ -19,7 +19,7 @@ class LogInterceptor:Interceptor {
                 " connection== ${chain.connection()} " +
                 " headers==${mRequest.headers}")
 
-        var mResponse=chain.proceed(mRequest)
+        val mResponse=chain.proceed(mRequest)
           //   mResponse=chain.proceed(mRequest)
 
         val endTime=System.currentTimeMillis()
