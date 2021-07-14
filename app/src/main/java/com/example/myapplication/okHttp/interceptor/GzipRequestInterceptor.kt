@@ -6,7 +6,6 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import okio.BufferedSink
 import okio.GzipSink
-import okio.Okio
 import okio.buffer
 
 /*

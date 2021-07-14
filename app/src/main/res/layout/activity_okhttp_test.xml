@@ -9,19 +9,35 @@
             android:id="@+id/btnGet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GET请求" />
+            android:text="同步GET请求" />
 
     <Button
             android:id="@+id/btnGetTwo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GET请求2" />
+            android:text="异步GET请求" />
 
+    <Button
+            android:id="@+id/btnGetHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="访问headers" />
+    <Button
+            android:id="@+id/btnPostString"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="post String" />
     <Button
             android:id="@+id/btnPost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="post请求" />
+            android:text="post基本请求" />
+
+    <Button
+            android:id="@+id/btnPostStream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="post Stream" />
 
     <TextView
             android:id="@+id/tvResponseContent"
