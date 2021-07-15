@@ -3,11 +3,14 @@ package com.example.myapplication.okHttp
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.myapplication.R
+import com.example.myapplication.okHttp.interceptor.CacheAgeInterceptor
+import com.example.myapplication.okHttp.interceptor.GzipRequestInterceptor
 import com.example.myapplication.okHttp.interceptor.LogInterceptor
 import com.example.myapplication.okHttp.util.LogUtil
 import kotlinx.android.synthetic.main.activity_okhttp_test.*
@@ -15,9 +18,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okio.BufferedSink
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import java.lang.Exception
+import java.util.logging.Logger
 import kotlin.math.log
 
 /**
@@ -72,42 +80,72 @@ class OkHttpTestActivity : AppCompatActivity() {
             postStream()
         }
 
+        btnPostFile.setOnClickListener {
+            postFile()
+        }
+
+    }
+
+    private fun postFile() {
+        val fileDir = File(Environment.getExternalStorageDirectory(),"leju")
+        if (!fileDir.exists()) {
+            fileDir.mkdir()
+        }
+        val fileName="lejuConnectionFile.txt"
+        val file=File(fileDir,fileName)
+        val request = Request.Builder()
+            .url("https://api.github.com/markdown/raw")
+            .post(file.asRequestBody(MEDIA_TYPE_MARKDOWN))
+            .build()
+
+            request.let {
+                mClient.newCall(it).enqueue(object : Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        LogUtil.D(log = "response error=== ${e.cause} message=== ${e.message}")
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        LogUtil.D(log = response.body!!.string())
+                    }
+                })
+        }
+
     }
 
     private fun postStream() {
-            val requestBody = object : RequestBody() {
-                override fun contentType() = MEDIA_TYPE_MARKDOWN
+        val requestBody = object : RequestBody() {
+            override fun contentType() = MEDIA_TYPE_MARKDOWN
 
-                /** Writes the content of this request to [sink]. */
-                override fun writeTo(sink: BufferedSink) {
-                    sink.writeUtf8("Numbers\n")
-                    sink.writeUtf8("-------\n")
-                    for (i in 2..10) {
-                        sink.writeUtf8(String.format(" * $i = ${factor(i)}\n"))
-                    }
-                }
-
-                // 因式分解
-                private fun factor(n: Int): String {
-                    for (i in 2 until n) {
-                        val x = n / i
-                        if (x * i == n) return "${factor(x)} × $i"
-                    }
-                    return n.toString()
+            /** Writes the content of this request to [sink]. */
+            override fun writeTo(sink: BufferedSink) {
+                sink.writeUtf8("Numbers\n")
+                sink.writeUtf8("-------\n")
+                for (i in 2..10) {
+                    sink.writeUtf8(String.format(" * $i = ${factor(i)}\n"))
                 }
             }
 
-            val request = Request.Builder()
-                .url("https://api.github.com/markdown/raw")
-                .post(requestBody)
-                .build()
+            // 因式分解
+            private fun factor(n: Int): String {
+                for (i in 2 until n) {
+                    val x = n / i
+                    if (x * i == n) return "${factor(x)} × $i"
+                }
+                return n.toString()
+            }
+        }
 
-           GlobalScope.launch {
-               mClient.newCall(request).execute().use { response ->
-                   if (!response.isSuccessful) throw IOException("Unexpected code $response")
+        val request = Request.Builder()
+            .url("https://api.github.com/markdown/raw")
+            .post(requestBody)
+            .build()
 
-                   LogUtil.D(log=response.body!!.string())
-           }
+        GlobalScope.launch {
+            mClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+                LogUtil.D(log = response.body!!.string())
+            }
 
         }
 
@@ -230,13 +268,13 @@ class OkHttpTestActivity : AppCompatActivity() {
 
     private fun getOkClient(): OkHttpClient {
         // 不设置拦截器
-        return OkHttpClient.Builder().build()
+        // return OkHttpClient.Builder().build()
 
         // 应用拦截器
         // return OkHttpClient.Builder().addInterceptor(LogInterceptor()).build()
 
         // 网络拦截器
-        // return OkHttpClient.Builder().addNetworkInterceptor(LogInterceptor()).build()
+        return OkHttpClient.Builder().addNetworkInterceptor(LogInterceptor()).build()
 
         // 压缩拦截器
         // return OkHttpClient.Builder().addNetworkInterceptor(GzipRequestInterceptor()).build()
@@ -256,12 +294,18 @@ class OkHttpTestActivity : AppCompatActivity() {
     private fun requestPermission() {
         if (ContextCompat.checkSelfPermission(
                 this,
-                Manifest.permission.INTERNET
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             return
         } else {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.INTERNET), 0)
+            ActivityCompat.requestPermissions(
+                this, arrayOf(
+                    Manifest.permission.INTERNET,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ), 0
+            )
         }
     }
 

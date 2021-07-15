@@ -9,14 +9,14 @@ import okio.GzipSink
 import okio.buffer
 
 /*
- * @date 2021/7/13 
+ * @date 2021/7/14
  * @author qipeng
  * @desc
  */
 class GzipRequestInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originRequest = chain.request()
-        if (originRequest == null || originRequest.header("Content-Encoding") != null) {
+        if (originRequest.header("Content-Encoding") != null) {
             return chain.proceed(originRequest)
         }
 

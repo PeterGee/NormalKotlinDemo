@@ -39,6 +39,12 @@
             android:layout_height="wrap_content"
             android:text="post Stream" />
 
+    <Button
+            android:id="@+id/btnPostFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="post File" />
+
     <TextView
             android:id="@+id/tvResponseContent"
             android:layout_width="match_parent"
