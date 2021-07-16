@@ -45,6 +45,24 @@
             android:layout_height="wrap_content"
             android:text="post File" />
 
+    <Button
+            android:id="@+id/btnPostFormData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="post form data" />
+
+    <Button
+            android:id="@+id/btnPostMultipartForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="post multipart form data" />
+
+    <Button
+            android:id="@+id/btnResponseCache"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="response cache" />
+
     <TextView
             android:id="@+id/tvResponseContent"
             android:layout_width="match_parent"

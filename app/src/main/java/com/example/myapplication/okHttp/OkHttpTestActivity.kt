@@ -10,7 +10,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.myapplication.R
 import com.example.myapplication.okHttp.interceptor.CacheAgeInterceptor
-import com.example.myapplication.okHttp.interceptor.GzipRequestInterceptor
 import com.example.myapplication.okHttp.interceptor.LogInterceptor
 import com.example.myapplication.okHttp.util.LogUtil
 import kotlinx.android.synthetic.main.activity_okhttp_test.*
@@ -20,13 +19,11 @@ import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.internal.cache.CacheInterceptor
 import okio.BufferedSink
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
-import java.lang.Exception
-import java.util.logging.Logger
-import kotlin.math.log
+import java.util.concurrent.TimeUnit
 
 /**
  * @date 2021/6/30
@@ -84,32 +81,151 @@ class OkHttpTestActivity : AppCompatActivity() {
             postFile()
         }
 
+        btnPostFormData.setOnClickListener {
+            postFormData()
+        }
+
+        btnPostMultipartForm.setOnClickListener {
+            postMultipartForm()
+        }
+
+        btnResponseCache.setOnClickListener {
+            responseCache()
+        }
+
+    }
+
+    private fun responseCache() {
+        val directory = File(Environment.getExternalStorageDirectory(),"customCache")
+        val cacheClient = OkHttpClient().newBuilder().addNetworkInterceptor(CacheAgeInterceptor())
+            .cache(Cache(directory = directory, maxSize = 2 * 1024 * 1024L))
+            .build()
+
+        // CacheControl.FORCE_CACHE 强制使用缓存
+        // CacheControl.FORCE_NETWORK 强制使用网络
+
+        val cc=CacheControl.Builder()
+            // 不使用缓存,但是会存储缓存数据
+            // .noCache()
+
+            // 不使用缓存，同时不存储缓存
+            // .noStore()
+
+            // 本地缓存时会使用缓存
+            // .onlyIfCached()
+
+            .minFresh(100,TimeUnit.SECONDS) // 10s刷新缓存
+            .maxAge(1,TimeUnit.HOURS) // 1h最大有效时间
+            .maxStale(50,TimeUnit.SECONDS) // 可以接受超时5s的响应
+            .build()
+
+        val request=Request.Builder().url(mUrl).cacheControl(cc).build()
+
+        GlobalScope.launch {
+            // 响应1
+            val responseOne=cacheClient.newCall(request).execute().use { response ->
+                if (response.isSuccessful){
+                    LogUtil.D(log="request success   cacheResponse=== ${response.cacheResponse?.body?.contentType()}  " +
+                            "networkResponse=== ${response.networkResponse}")
+                }else{
+                    LogUtil.D(log="requestOne error   errorCode ===${response.code}")
+                }
+            }
+
+            // 响应2
+            val responseTwo=cacheClient.newCall(request).execute().use { response ->
+                if (response.isSuccessful){
+                    LogUtil.D(log="request successTwo   cacheResponse=== ${response.cacheResponse?.body.toString()} " +
+                            " networkResponse=== ${response.networkResponse}")
+                }else{
+                    LogUtil.D(log="requestTwo  error   errorCode ===${response.code}")
+                }
+            }
+
+            LogUtil.D(log=" responseOne===responseTwo====${responseOne==responseTwo}")
+
+        }
+
+    }
+
+    private fun postMultipartForm() {
+        // 将手机上文件通过formData 传递
+        val requestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("title", "registry_list")
+            .addFormDataPart(
+                "text", "registry_list.txt",
+                getFile("360/authshare", "registry_list.txt").asRequestBody(MEDIA_TYPE_MARKDOWN)
+            )
+            .build()
+
+        val request = Request.Builder()
+            .header("Authorization", "Client-ID $IMGUR_CLIENT_ID")
+            .url("https://www.baidu.com")
+            .post(requestBody)
+            .build()
+
+        mClient.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                LogUtil.D(log = "error  message ==== ${e.message}")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                LogUtil.D(log = "success response   code==== ${response.code}    body===== ${response.body.toString()}")
+            }
+
+        })
+    }
+
+    private fun postFormData() {
+        val formData = FormBody.Builder()
+            .add("search", "Jurassic Park")
+            .build()
+
+        val request = Request.Builder()
+            .url("https://www.baidu.com")
+            .post(formData)
+            .build()
+
+        mClient.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                LogUtil.D(log = "error  message ==== ${e.message}")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                LogUtil.D(log = "success response== ${response.body.toString()}")
+            }
+
+        })
     }
 
     private fun postFile() {
-        val fileDir = File(Environment.getExternalStorageDirectory(),"leju")
-        if (!fileDir.exists()) {
-            fileDir.mkdir()
-        }
-        val fileName="lejuConnectionFile.txt"
-        val file=File(fileDir,fileName)
+        val file = getFile("test", "testFile.txt")
         val request = Request.Builder()
             .url("https://api.github.com/markdown/raw")
             .post(file.asRequestBody(MEDIA_TYPE_MARKDOWN))
             .build()
 
-            request.let {
-                mClient.newCall(it).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-                        LogUtil.D(log = "response error=== ${e.cause} message=== ${e.message}")
-                    }
+        request.let {
+            mClient.newCall(it).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    LogUtil.D(log = "response error=== ${e.cause} message=== ${e.message}")
+                }
 
-                    override fun onResponse(call: Call, response: Response) {
-                        LogUtil.D(log = response.body!!.string())
-                    }
-                })
+                override fun onResponse(call: Call, response: Response) {
+                    LogUtil.D(log = response.body!!.string())
+                }
+            })
         }
 
+    }
+
+    private fun getFile(dir: String, fileName: String): File {
+        val fileDir = File(Environment.getExternalStorageDirectory(), dir)
+        if (!fileDir.exists()) {
+            fileDir.mkdir()
+        }
+        return File(fileDir, fileName)
     }
 
     private fun postStream() {
@@ -323,5 +439,6 @@ class OkHttpTestActivity : AppCompatActivity() {
 
     companion object {
         val MEDIA_TYPE_MARKDOWN = "text/x-markdown; charset=utf-8".toMediaType()
+        const val IMGUR_CLIENT_ID = "9199fdef135c122"
     }
 }
