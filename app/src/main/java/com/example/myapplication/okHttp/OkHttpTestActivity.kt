@@ -23,6 +23,7 @@ import okhttp3.internal.cache.CacheInterceptor
 import okio.BufferedSink
 import java.io.File
 import java.io.IOException
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 /**
@@ -93,10 +94,72 @@ class OkHttpTestActivity : AppCompatActivity() {
             responseCache()
         }
 
+        btnCancelCall.setOnClickListener {
+            cancelCallMethod()
+        }
+
+        btnTimeout.setOnClickListener {
+            timeoutFunction()
+        }
+    }
+
+    private fun timeoutFunction() {
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .addNetworkInterceptor(LogInterceptor())
+            .connectTimeout(5, TimeUnit.SECONDS) // 连接超时时间
+            .writeTimeout(5, TimeUnit.SECONDS)      // 写超时时间
+            .readTimeout(5, TimeUnit.SECONDS)       // 读超时时间
+            .callTimeout(10, TimeUnit.SECONDS)      // 全过程超时时间
+            .build()
+
+        val request = Request.Builder()
+            .url(mUrl3)
+            .build()
+
+        GlobalScope.launch {
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    LogUtil.D(log = "Response error: ${e.message}")
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    LogUtil.D(log = "Response completed: ${response.body.toString()}")
+                }
+
+            })
+        }
+    }
+
+    private fun cancelCallMethod() {
+        // init
+        val executor = Executors.newScheduledThreadPool(1)
+        val request = Request.Builder()
+            .url("https://www.baidu.com")
+            .build()
+        val startTime = System.currentTimeMillis()
+        val mCall = mClient.newCall(request)
+
+        // 延迟5s
+        executor.schedule({
+            LogUtil.D(log = "startCallTime=== ${System.currentTimeMillis() - startTime}")
+            mCall.cancel()
+        }, 5, TimeUnit.SECONDS)
+
+        // 请求
+        GlobalScope.launch {
+            mCall.execute().use { response ->
+                if (response.isSuccessful) {
+                    LogUtil.D(log = "call success response=== ${response.body.toString()}")
+                } else {
+                    LogUtil.D(log = "call fail code is === ${response.code}")
+                }
+            }
+        }
+
     }
 
     private fun responseCache() {
-        val directory = File(Environment.getExternalStorageDirectory(),"customCache")
+        val directory = File(Environment.getExternalStorageDirectory(), "customCache")
         val cacheClient = OkHttpClient().newBuilder().addNetworkInterceptor(CacheAgeInterceptor())
             .cache(Cache(directory = directory, maxSize = 2 * 1024 * 1024L))
             .build()
@@ -104,7 +167,7 @@ class OkHttpTestActivity : AppCompatActivity() {
         // CacheControl.FORCE_CACHE 强制使用缓存
         // CacheControl.FORCE_NETWORK 强制使用网络
 
-        val cc=CacheControl.Builder()
+        val cc = CacheControl.Builder()
             // 不使用缓存,但是会存储缓存数据
             // .noCache()
 
@@ -113,36 +176,39 @@ class OkHttpTestActivity : AppCompatActivity() {
 
             // 本地缓存时会使用缓存
             // .onlyIfCached()
-
-            .minFresh(100,TimeUnit.SECONDS) // 10s刷新缓存
-            .maxAge(1,TimeUnit.HOURS) // 1h最大有效时间
-            .maxStale(50,TimeUnit.SECONDS) // 可以接受超时5s的响应
+            .minFresh(100, TimeUnit.SECONDS) // 10s刷新缓存
+            .maxAge(1, TimeUnit.HOURS) // 1h最大有效时间
+            .maxStale(50, TimeUnit.SECONDS) // 可以接受超时5s的响应
             .build()
 
-        val request=Request.Builder().url(mUrl).cacheControl(cc).build()
+        val request = Request.Builder().url(mUrl).cacheControl(cc).build()
 
         GlobalScope.launch {
             // 响应1
-            val responseOne=cacheClient.newCall(request).execute().use { response ->
-                if (response.isSuccessful){
-                    LogUtil.D(log="request success   cacheResponse=== ${response.cacheResponse?.body?.contentType()}  " +
-                            "networkResponse=== ${response.networkResponse}")
-                }else{
-                    LogUtil.D(log="requestOne error   errorCode ===${response.code}")
+            val responseOne = cacheClient.newCall(request).execute().use { response ->
+                if (response.isSuccessful) {
+                    LogUtil.D(
+                        log = "request success   cacheResponse=== ${response.cacheResponse?.body?.contentType()}  " +
+                                "networkResponse=== ${response.networkResponse}"
+                    )
+                } else {
+                    LogUtil.D(log = "requestOne error   errorCode ===${response.code}")
                 }
             }
 
             // 响应2
-            val responseTwo=cacheClient.newCall(request).execute().use { response ->
-                if (response.isSuccessful){
-                    LogUtil.D(log="request successTwo   cacheResponse=== ${response.cacheResponse?.body.toString()} " +
-                            " networkResponse=== ${response.networkResponse}")
-                }else{
-                    LogUtil.D(log="requestTwo  error   errorCode ===${response.code}")
+            val responseTwo = cacheClient.newCall(request).execute().use { response ->
+                if (response.isSuccessful) {
+                    LogUtil.D(
+                        log = "request successTwo   cacheResponse=== ${response.cacheResponse?.body.toString()} " +
+                                " networkResponse=== ${response.networkResponse}"
+                    )
+                } else {
+                    LogUtil.D(log = "requestTwo  error   errorCode ===${response.code}")
                 }
             }
 
-            LogUtil.D(log=" responseOne===responseTwo====${responseOne==responseTwo}")
+            LogUtil.D(log = " responseOne===responseTwo====${responseOne == responseTwo}")
 
         }
 

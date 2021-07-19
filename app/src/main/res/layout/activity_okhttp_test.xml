@@ -63,6 +63,18 @@
             android:layout_height="wrap_content"
             android:text="response cache" />
 
+    <Button
+            android:id="@+id/btnCancelCall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="cancel call" />
+
+    <Button
+            android:id="@+id/btnTimeout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="timeout" />
+
     <TextView
             android:id="@+id/tvResponseContent"
             android:layout_width="match_parent"
