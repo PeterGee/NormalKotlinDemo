@@ -101,7 +101,94 @@ class OkHttpTestActivity : AppCompatActivity() {
         btnTimeout.setOnClickListener {
             timeoutFunction()
         }
+
+        btnPerCall.setOnClickListener {
+            perCallConfiguration()
+        }
+
+        btnHandleAuth.setOnClickListener {
+            handleAuthentication()
+        }
     }
+
+    private fun handleAuthentication() {
+        val client = OkHttpClient.Builder()
+            .authenticator(object : Authenticator {
+                @Throws(IOException::class)
+                override fun authenticate(route: Route?, response: Response): Request? {
+                    if (response.request.header("Authorization") != null) {
+                        return null
+                    }
+
+                    LogUtil.D(log = "Authenticating for response: $response")
+                    LogUtil.D(log = "Challenges: ${response.challenges()}")
+                    // 设置认证凭据
+                    val credential = Credentials.basic("jesse", "password1")
+                    return response.request.newBuilder()
+                        .header("Authorization", credential)
+                        .build()
+                }
+            })
+            .build()
+
+        val request = Request.Builder()
+            .url("https://publicobject.com/secrets/hellosecret.txt")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                LogUtil.D(log = "Response error: ${e.message}")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                LogUtil.D(log = "Response completed: ${response.body.toString()}")
+            }
+
+        })
+    }
+
+    private fun perCallConfiguration() {
+        val request = Request.Builder()
+            .url("https://httpbin.org/delay/1") // This URL is served with a 1 second delay.
+            .build()
+
+        // set timeout 500
+        val clientOne = mClient.newBuilder()
+            .readTimeout(500, TimeUnit.MILLISECONDS)
+            .build()
+        GlobalScope.launch {
+            clientOne.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    LogUtil.D(log = "Response error: ${e.message}")
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    LogUtil.D(log = "Response completed: ${response.body.toString()}")
+                }
+
+            })
+        }
+
+        // set timeout 3000
+        val clientTwo = mClient.newBuilder()
+            .readTimeout(3000, TimeUnit.MILLISECONDS)
+            .build()
+
+        GlobalScope.launch {
+            clientTwo.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    LogUtil.D(log = "Response error: ${e.message}")
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    LogUtil.D(log = "Response completed: ${response.body.toString()}")
+
+                }
+
+            })
+        }
+    }
+
 
     private fun timeoutFunction() {
         val client: OkHttpClient = OkHttpClient.Builder()
