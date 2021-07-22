@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.lib_base.constant.connectiontime.NetWorkUtils
 import com.example.myapplication.R
 import com.example.myapplication.okHttp.interceptor.CacheAgeInterceptor
 import com.example.myapplication.okHttp.interceptor.LogInterceptor
@@ -248,7 +249,7 @@ class OkHttpTestActivity : AppCompatActivity() {
     private fun responseCache() {
         val directory = File(Environment.getExternalStorageDirectory(), "customCache")
         val cacheClient = OkHttpClient().newBuilder().addNetworkInterceptor(CacheAgeInterceptor())
-            .cache(Cache(directory = directory, maxSize = 2 * 1024 * 1024L))
+            .cache(Cache(directory = directory, maxSize = 1 * 1024 * 1024L))
             .build()
 
         // CacheControl.FORCE_CACHE 强制使用缓存
@@ -263,12 +264,12 @@ class OkHttpTestActivity : AppCompatActivity() {
 
             // 本地缓存时会使用缓存
             // .onlyIfCached()
-            .minFresh(100, TimeUnit.SECONDS) // 10s刷新缓存
+            .minFresh(10, TimeUnit.SECONDS) // 10s刷新缓存
             .maxAge(1, TimeUnit.HOURS) // 1h最大有效时间
-            .maxStale(50, TimeUnit.SECONDS) // 可以接受超时5s的响应
+            .maxStale(5, TimeUnit.SECONDS) // 可以接受超时5s的响应
             .build()
 
-        val request = Request.Builder().url(mUrl).cacheControl(cc).build()
+        val request = Request.Builder().url(mUrl).cacheControl(CacheControl.FORCE_CACHE).build()
 
         GlobalScope.launch {
             // 响应1
