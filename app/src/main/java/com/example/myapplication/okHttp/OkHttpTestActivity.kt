@@ -153,6 +153,10 @@ class OkHttpTestActivity : AppCompatActivity() {
             .url("https://httpbin.org/delay/1") // This URL is served with a 1 second delay.
             .build()
 
+        val requestTwo = Request.Builder()
+            .url("https://www.baidu.com") // This URL is served with a 1 second delay.
+            .build()
+
         // set timeout 500
         val clientOne = mClient.newBuilder()
             .readTimeout(500, TimeUnit.MILLISECONDS)
@@ -176,7 +180,7 @@ class OkHttpTestActivity : AppCompatActivity() {
             .build()
 
         GlobalScope.launch {
-            clientTwo.newCall(request).enqueue(object : Callback {
+            clientTwo.newCall(requestTwo).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     LogUtil.D(log = "Response error: ${e.message}")
                 }
@@ -194,14 +198,14 @@ class OkHttpTestActivity : AppCompatActivity() {
     private fun timeoutFunction() {
         val client: OkHttpClient = OkHttpClient.Builder()
             .addNetworkInterceptor(LogInterceptor())
-            .connectTimeout(5, TimeUnit.SECONDS) // 连接超时时间
+            .connectTimeout(5, TimeUnit.SECONDS)  // 连接超时时间
             .writeTimeout(5, TimeUnit.SECONDS)      // 写超时时间
             .readTimeout(5, TimeUnit.SECONDS)       // 读超时时间
             .callTimeout(10, TimeUnit.SECONDS)      // 全过程超时时间
             .build()
 
         val request = Request.Builder()
-            .url(mUrl3)
+            .url(mUrl2)
             .build()
 
         GlobalScope.launch {
@@ -542,7 +546,7 @@ class OkHttpTestActivity : AppCompatActivity() {
 
         // 应用拦截器
         // return OkHttpClient.Builder().addInterceptor(LogInterceptor()).build()
-
+       // return OkHttpClient()
         // 网络拦截器
         return OkHttpClient.Builder().addNetworkInterceptor(LogInterceptor()).build()
 
@@ -595,4 +599,5 @@ class OkHttpTestActivity : AppCompatActivity() {
         val MEDIA_TYPE_MARKDOWN = "text/x-markdown; charset=utf-8".toMediaType()
         const val IMGUR_CLIENT_ID = "9199fdef135c122"
     }
+    internal  class  Test{}
 }
