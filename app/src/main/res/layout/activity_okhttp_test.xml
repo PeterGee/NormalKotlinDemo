@@ -30,4 +30,8 @@
             android:textColor="@color/color_black"
             android:textSize="16sp"
             tool:text="响应数据:" />
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_manager_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 </androidx.appcompat.widget.LinearLayoutCompat>

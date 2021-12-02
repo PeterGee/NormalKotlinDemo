@@ -7,5 +7,6 @@ package com.example.myapplication.okHttp.bean
  */
 data class Person(
     var name: String,
-    var age: Int
+    var age: Int,
+    val type:Int
 )

@@ -7,7 +7,10 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myapplication.R
+import com.example.myapplication.okHttp.adapter.GridSpanLookAdapter
+import com.example.myapplication.okHttp.bean.Person
 import kotlinx.android.synthetic.main.activity_okhttp_test.*
 import okhttp3.*
 import java.io.IOException
@@ -46,6 +49,28 @@ class OkHttpTestActivity : AppCompatActivity() {
         btnGetTwo.setOnClickListener {
             doGetRequestTwo()
         }
+        spanSizeLookTest()
+    }
+
+    private fun spanSizeLookTest() {
+        val dataList= arrayListOf<Person>()
+        dataList.add(Person("张三",18,1))
+        dataList.add(Person("李四",18,2))
+        dataList.add(Person("王五",18,3))
+        dataList.add(Person("王五",18,3))
+        dataList.add(Person("王五",18,3))
+        dataList.add(Person("王五",18,3))
+        dataList.add(Person("王五",18,3))
+
+       val manager=GridLayoutManager(this,4)
+        manager.spanSizeLookup=object :GridLayoutManager.SpanSizeLookup(){
+            override fun getSpanSize(position: Int): Int {
+                return dataList[position].type
+            }
+
+        }
+        rv_manager_test.layoutManager=manager
+        rv_manager_test.adapter=GridSpanLookAdapter(dataList)
     }
 
     private fun initRequest() {
