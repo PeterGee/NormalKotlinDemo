@@ -77,9 +77,12 @@
         <activity android:name=".tablayout.TableLayoutActivity"></activity>
 
         <activity android:name=".okHttp.OkHttpTestActivity">
+        </activity>
+
+        <activity android:name=".designMode.DesignModeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

@@ -7,7 +7,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/workspace/NormalKotlinDemo/NormalKotlinDemo/app/src/main/res/layout/activity_design_mode.xml" value="0.309375" />
         <entry key="..\:/workspace/NormalKotlinDemo/NormalKotlinDemo/app/src/main/res/layout/activity_okhttp_test.xml" value="0.14984863773965693" />
+        <entry key="..\:/workspace/NormalKotlinDemo/NormalKotlinDemo/app/src/main/res/layout/item_custom_img.xml" value="0.14984863773965693" />
         <entry key="..\:/workspace/NormalKotlinDemo/NormalKotlinDemo/app/src/main/res/layout/item_grid_look_test.xml" value="0.309375" />
       </map>
     </option>

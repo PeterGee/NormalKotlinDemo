@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.myapplication.R
 import com.example.myapplication.okHttp.adapter.GridSpanLookAdapter
 import com.example.myapplication.okHttp.bean.Person
@@ -70,6 +71,7 @@ class OkHttpTestActivity : AppCompatActivity() {
 
         }
         rv_manager_test.layoutManager=manager
+        rv_manager_test.itemAnimator=null
         rv_manager_test.adapter=GridSpanLookAdapter(dataList)
     }
 
