@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tool="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-    <Button
-            android:id="@+id/btnGet"
+    <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GET请求" />
+            android:orientation="vertical">
 
-    <Button
-            android:id="@+id/btnGetTwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GET请求2" />
+        <Button
+                android:id="@+id/btnGet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="同步GET请求" />
 
-    <Button
-            android:id="@+id/btnPost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="post请求" />
+        <Button
+                android:id="@+id/btnGetTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="异步GET请求" />
 
+<<<<<<< HEAD
     <TextView
             android:id="@+id/tvResponseContent"
             android:layout_width="match_parent"
@@ -35,3 +34,90 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
+=======
+        <Button
+                android:id="@+id/btnGetHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="访问headers" />
+
+        <Button
+                android:id="@+id/btnPostString"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="post String" />
+
+        <Button
+                android:id="@+id/btnPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="post基本请求" />
+
+        <Button
+                android:id="@+id/btnPostStream"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="post Stream" />
+
+        <Button
+                android:id="@+id/btnPostFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="post File" />
+
+        <Button
+                android:id="@+id/btnPostFormData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="post form data" />
+
+        <Button
+                android:id="@+id/btnPostMultipartForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="post multipart form data" />
+
+        <Button
+                android:id="@+id/btnResponseCache"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="response cache" />
+
+        <Button
+                android:id="@+id/btnCancelCall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="cancel call" />
+
+        <Button
+                android:id="@+id/btnTimeout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="timeout" />
+
+        <Button
+                android:id="@+id/btnPerCall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="perCallConfig" />
+
+        <Button
+                android:id="@+id/btnHandleAuth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="handleAuth" />
+        <TimePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"/>
+
+        <TextView
+                android:id="@+id/tvResponseContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_black"
+                android:textSize="16sp"
+                tool:text="响应数据:" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>
+>>>>>>> e9d360b7d33bf70e40b76de84ae790cac214a931
