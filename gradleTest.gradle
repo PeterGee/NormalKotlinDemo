@@ -1,14 +1,58 @@
-def a=1
+/*
+setDescription("this is my first graldle project")
+println("Description of this project is " + project.getDescription())
+def a = 1
 println("a is $a")
 
 task method {
-    addMethod(1,2)
-}
-def addMethod(int a,int b){
-    a+b
+    doFirst {
+        println("this is first method")
+    }
+    doLast {
+        println("hello world")
+    }
+    addMethod(1, 2)
 }
 
-def map = ['a':1, 'b':2, 'c':3]
-for (v in map.values()){
+def addMethod(int a, int b) {
+    a + b
+}
+
+def map = ['a': 1, 'b': 2, 'c': 3]
+for (v in map.values()) {
     println(v)
 }
+
+method.doFirst{" this is first action"}
+
+
+task printVersion(dependsOn:[method]){
+    logger.quiet("this is printVersion function")
+}
+*/
+
+
+def listData = ["hello", "world"]
+listData.each { item ->
+    println("item is $item")
+}
+
+task first {
+    doLast {
+        println(
+                "this is first")
+    }
+}
+task second {
+    doLast {
+        println(
+                "this is second")
+    }
+}
+
+first.finalizedBy second
+
+// DependencyHandler 依赖接口
+// 自定义task
+
+

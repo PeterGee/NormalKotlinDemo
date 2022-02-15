@@ -21,20 +21,10 @@
                 android:layout_height="wrap_content"
                 android:text="异步GET请求" />
 
-<<<<<<< HEAD
-    <TextView
-            android:id="@+id/tvResponseContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_black"
-            android:textSize="16sp"
-            tool:text="响应数据:" />
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_manager_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-</androidx.appcompat.widget.LinearLayoutCompat>
-=======
         <Button
                 android:id="@+id/btnGetHeader"
                 android:layout_width="match_parent"
@@ -120,4 +110,3 @@
                 tool:text="响应数据:" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>
->>>>>>> e9d360b7d33bf70e40b76de84ae790cac214a931

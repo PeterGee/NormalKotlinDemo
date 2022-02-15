@@ -81,7 +81,8 @@
         <activity android:name=".okHttp.OkHttpTestActivity">
         </activity>
 
-        <activity android:name=".designMode.DesignModeActivity">
+        <activity android:name=".designMode.DesignModeActivity"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

@@ -18,6 +18,7 @@ import java.util.logging.Logger
  * @desc
  */
 class DesignModeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_design_mode)
