@@ -3,7 +3,6 @@ package com.example.myapplication.okHttp.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
-import com.example.myapplication.okHttp.interceptor.LogInterceptor
 import com.example.myapplication.okHttp.util.LogUtil
 import kotlinx.android.synthetic.main.activity_okhttp_test_two.*
 import kotlinx.coroutines.GlobalScope
@@ -16,7 +15,7 @@ import okhttp3.Request
  * @author qipeng
  * @desc
  */
-class OkHttpTestTwoActivity : AppCompatActivity() {
+class OkHttpTestTwoActivity : AppCompatActivity(){
 
     private val mUrl = "https://www.baidu.com"
     private val mClient = OkHttpClient.Builder().build()
@@ -49,4 +48,5 @@ class OkHttpTestTwoActivity : AppCompatActivity() {
 
 
     }
+
 }

@@ -1,6 +1,8 @@
 package com.example.myapplication.leetcode.array;
 
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * @author qipeng
@@ -30,7 +32,10 @@ class ArrayTest {
         // printArray(getItemWithSum(arr3, 15));
 
         int[] arr4 = {2, 3, 1, 0, 2, 5, 3};
-        System.out.println(getDuplicateItem(arr4));
+        // System.out.println(getDuplicateItem(arr4));
+
+        int[] arr5 = {2, 3, 4, 2, 6, 2, 5, 1};
+        printArray(getMaxWindowNumber(arr5, 3));
     }
 
 
@@ -349,6 +354,38 @@ class ArrayTest {
         }
         return -1;
 
+    }
+
+    /**
+     * 问题 :
+     * - 给定一个数组和滑动窗口的大小，请找出所有滑动窗口里的最大值。
+     * - 示例 :
+     * - 例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小为3，那么一共存在6个滑动窗口，它们的最大值分别为{4,4,6,6,6,5}。
+     */
+
+    public static int[] getMaxWindowNumber(int[] arr, int k) {
+        if (arr == null || arr.length < k || k == 0) return new int[0];
+        int[] windowMax = new int[arr.length - k + 1];
+
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < arr.length; i++) {
+            // 双端队列不为空，并且元素大于队列中最后一个元素，移除队列中最后一个元素,保留大的元素在前
+            while (!deque.isEmpty() && arr[deque.getLast()] < arr[i]) {
+                deque.removeLast();
+            }
+            deque.addLast(i);
+
+            // 队列满了，从头部移除
+            if (deque.getFirst() == i - k) {
+                deque.removeFirst();
+            }
+
+            // 将窗口中最大值添加到最大值队列中
+            if (i >= k - 1) windowMax[i - k + 1] = arr[deque.getFirst()];
+
+        }
+
+        return windowMax;
     }
 
 }
