@@ -43,15 +43,21 @@
 
         <activity android:name=".navigation.NavigationActivity"></activity>
 
-        <activity android:name=".router.RouterMainActivity">
+        <activity
+                android:name=".router.RouterMainActivity"
+                android:exported="true">
 
         </activity>
 
 
-        <activity android:name=".router.ARouterTestActivity">
+        <activity
+                android:name=".router.ARouterTestActivity"
+                android:exported="true">
 
         </activity>
-        <activity android:name=".router.RouterSecondActivity" />
+        <activity
+                android:name=".router.RouterSecondActivity"
+                android:exported="true" />
         <activity android:name=".testAcivity.MainActivity"></activity>
         <activity android:name=".testAcivity.ActivityOne" />
         <activity android:name=".testAcivity.ParseActivity" />
@@ -78,14 +84,14 @@
         <activity android:name=".room.RoomTestActivity"></activity>
         <activity android:name=".tablayout.TableLayoutActivity"></activity>
 
-        <activity android:name=".okHttp.OkHttpTestActivity">
-        </activity>
+        <activity android:name=".okHttp.OkHttpTestActivity"></activity>
 
-        <activity android:name=".designMode.DesignModeActivity"
+        <activity
+                android:name=".designMode.DesignModeActivity"
                 android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
