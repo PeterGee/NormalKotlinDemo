@@ -54,5 +54,175 @@ first.finalizedBy second
 
 // DependencyHandler 依赖接口
 // 自定义task
+defaultTasks 'cleanTask'
+
+task cleanTask {
+    println("clean task")
+}
+
+task hello {
+    doLast {
+        4.times { print("$it") }
+    }
+    println("print directly")
+    doFirst {
+        println("this is hello first")
+    }
+}
+
+// 闭包
+task upper {
+    String someString = 'mY_name'
+    println(someString.toUpperCase())
+}
+
+// 依赖
+task intro(dependsOn: upper) {
+    println("I am Gradle")
+}
+
+// 定义执行顺序
+hello.mustRunAfter upper
+
+// 条件判断
+hello.onlyIf { project.hasProperty("intro") }
+
+// 通过intro任务释放hello任务
+hello.finalizedBy(intro)
+
+task loadFile {
+    def files = file('../src/main/res/drawable').listFiles()
+    println("start  loadFile")
+    files.each {
+        File file ->
+            if (file.isFile()) {
+                ant.loadfile(srcFile: file, property: file.name)
+                println("****  $file.name ****")
+                println("${ant.properties[file.name]}")
+            } else {
+                println("there is no file")
+            }
+    }
+    println("end  loadFile")
+}
+
+// 文件树
+FileTree tree = fileTree(dir: 'src/main')
+// 添加包含规则及排除规则
+tree.include '**/*.java'
+tree.exclude '**/Abstract*'
+
+// 过滤文件树
+FileTree filterTree = tree.matching {
+    include 'org/gradle/api/**'
+}
+
+// 合并文件树
+FileTree sumTree = tree + fileTree(dir: 'src/test')
+
+// 访问文件树元素
+/*tree.visit { element->
+    println("$element.relativePath => $element.file")
+}*/
+
+println(filterTree)
+
+// 使用路径创建一棵树
+// treeTwo=fileTree('src').include ('**/*.java')
+// 使用闭合创建一个树
+// treeThree=fileTree('src'){include '**/*.java'}
+// 使用map创建一棵树
+// treeByMap=fileTree(dir: 'src',includes: '**/*.java')
+// treeByMapTwo=fileTree(dir: 'src',includes: '**/*.java',excludes: '**/*test*/**')
+
+// 文件压缩ZIP格式
+FileTree zip = zipTree('someFile.zip')
+// 文件压缩tar格式
+FileTree tar = tarTree('someFile.zip')
+// 根据文件扩展名得到压缩方式，明确指定压缩方式为gzip压缩
+FileTree someTar = tarTree(resources.gzip('someTar.txt'))
+
+// 指定一组输入文件
+// 使用file对象设置源目录
+/*compile {
+    source = file('src/main/java')
+}
+// 使用字符路径设置源目录
+compile {
+    source = 'src/main/java'
+}
+// 使用一个集合设置多个目录源
+compile {
+    source = ['src/main/java', '../share/java']
+}
+// 使用FileCollection或者FileTree设置源目录
+compile {
+    source = fileTree(dir: 'src/main/java').matching { include 'org/gradle/api/**' }
+}
+// 使用闭包设置源目录
+compile{
+    source={
+        file('src').listFiles().findAll{it.name.endsWith('.zip')}.collect{zipTree(it)}
+    }
+}*/
+
+// 复制文件
+/*task copyTask(type:Copy){
+    from 'src/main/java'
+    into 'build/exploredWar'
+}*/
+
+// 选择要复制的文件
+task copyTaskWithPatterns(type: Copy) {
+    // 源文件夹
+    // from 'src/main/webapp'
+    // 目标文件夹
+    // into 'build/exploredWar'
+    // include '**/*.html'
+    // include '**/*/jsp'
+    /*   exclude{ details -> details.file.name.endsWith('.html')&& details.file.text.contains('staging')}*/
+}
+
+// 重命名文件
+/*task rename(type:Copy){
+    from 'src/main/webapp'
+    into 'build/explodedWar'
+    // 使用一个闭合映射文件夹
+    rename{ String fileName ->
+        fileName.replace('-staging-','')
+    }
+
+    // 使用正则表达式映射文件名
+    rename '(.+)-staging-(.+)','$1$2'
+    rename '/(.+)-staging-(.+)/','$1$2'
+
+}*/
+
+// 使用同步任务
+/*task libs(type: Sync){
+    form configurations.runtime
+    into '$buildDir/libs'
+}*/
+
+//  创建一个zip文档
+/*task zip(type:Zip){
+    from 'src/main/java'
+    into('libs'){
+        from configurations.runtime
+    }
+}*/
+
+// 配置归档任务
+// archivesBaseName = 'gradle'
+version = 1.0
+
+task myZip(type: Zip) {
+    appendix 'wrapper'
+    classifier 'src'
+    from 'somedir'
+}
+
+println myZip.archiveName
+
 
 
