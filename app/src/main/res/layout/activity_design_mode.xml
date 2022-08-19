@@ -11,18 +11,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:gravity="center"
-                android:text="one" />
+                android:text="startService" />
         <TextView
                 android:id="@+id/btn_two"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:gravity="center"
-                android:text="two" />
+                android:text="stopService" />
         <TextView
                 android:id="@+id/btn_three"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:gravity="center"
-                android:text="three" />
+                android:text="bindService" />
+        <TextView
+                android:id="@+id/btn_four"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="unBindService" />
     </LinearLayout>
 </layout>

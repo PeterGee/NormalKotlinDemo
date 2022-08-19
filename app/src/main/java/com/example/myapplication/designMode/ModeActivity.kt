@@ -53,6 +53,14 @@ class ModeActivity : AppCompatActivity() {
         for (i in 0..11) {
             dataList.add(UserBean("哈哈哈", 18, i == 2))
         }
+
+        dataList.forEachIndexed{
+                index,item->
+            run {
+                println("index=== $index  item== $item")
+            }
+        }
+
         return dataList
     }
 

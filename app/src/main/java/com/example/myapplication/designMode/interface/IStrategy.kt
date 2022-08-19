@@ -9,4 +9,10 @@ class Strategy {
     interface IStrategy{
         fun action(action:String)
     }
+
+    interface IStrategyTwo  {
+        fun action(action:String)
+    }
+
+
 }
