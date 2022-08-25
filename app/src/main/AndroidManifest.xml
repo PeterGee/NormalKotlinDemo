@@ -89,17 +89,29 @@
 
         <activity
                 android:name=".designMode.ModeActivity"
-                android:exported="true" />
+                android:exported="true" >
+        </activity>
+
+
         <activity android:name=".okHttp.activity.OkHttpTestTwoActivity" />
 
         <activity
                 android:name=".designMode.DesignModeActivity"
                 android:exported="true">
+        </activity>
+
+        <activity android:name=".motionLayout.MotionLayoutActivity"
+                android:exported="true">
+        </activity>
+
+        <activity android:name=".recyclerview.RecyclerViewTestActivity"
+                android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 

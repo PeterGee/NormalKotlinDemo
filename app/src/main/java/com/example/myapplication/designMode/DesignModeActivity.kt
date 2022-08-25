@@ -23,7 +23,7 @@ class DesignModeActivity : Activity() {
     private lateinit var mBinding: ActivityDesignModeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_design_mode )
+        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_design_mode )
         mBinding.btnOne.setOnClickListener {
            val intent=Intent(this,BackgroundService::class.java)
             startService(intent)
