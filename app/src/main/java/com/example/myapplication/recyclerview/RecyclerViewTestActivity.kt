@@ -50,6 +50,7 @@ class RecyclerViewTestActivity : AppCompatActivity() {
                 )
             )
         }
+
         LogUtil.D(
             "tag", "measuredHeight=== ${mBinding.rvTest.measuredHeight}   " +
                     "  height===${mBinding.rvTest.height}" +
@@ -58,4 +59,20 @@ class RecyclerViewTestActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        mBinding.rvTest.post {
+            LogUtil.D(
+                "tag", "   onResume measuredHeight=== ${mBinding.rvTest.measuredHeight}   " +
+                        "  height===${mBinding.rvTest.height}" +
+                        "  minHeight==${mBinding.rvTest.minimumHeight}"
+            )
+        }
+        mBinding.rvTest.invalidate()
+
+    }
+
+
+
 }
