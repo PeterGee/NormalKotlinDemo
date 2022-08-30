@@ -24,6 +24,11 @@ class WorkManagerActivity : AppCompatActivity() {
         initView()
     }
 
+
+    override fun onPostResume() {
+        super.onPostResume()
+    }
+
     @RequiresApi(Build.VERSION_CODES.M)
     private fun initView() {
         val workOne = OneTimeWorkRequest.Builder(SubWorkerOne::class.java).build()
