@@ -11,6 +11,7 @@
         <entry key="..\:/workspace/NormalKotlinDemo/NormalKotlinDemo/app/src/main/res/layout/activity_okhttp_test.xml" value="0.14984863773965693" />
         <entry key="..\:/workspace/NormalKotlinDemo/NormalKotlinDemo/app/src/main/res/layout/item_custom_img.xml" value="0.14984863773965693" />
         <entry key="..\:/workspace/NormalKotlinDemo/NormalKotlinDemo/app/src/main/res/layout/item_grid_look_test.xml" value="0.309375" />
+        <entry key="app/src/main/res/layout/activity_animation.xml" value="0.17300724637681159" />
         <entry key="app/src/main/res/layout/activity_design_mode.xml" value="0.1852355072463768" />
         <entry key="app/src/main/res/layout/activity_jetpack_demo.xml" value="0.18840579710144928" />
         <entry key="app/src/main/res/layout/activity_jetpack_test.xml" value="0.17527173913043478" />
@@ -23,6 +24,9 @@
         <entry key="app/src/main/res/layout/activity_recycvler_view_test.xml" value="0.20878623188405798" />
         <entry key="app/src/main/res/layout/item_custom_img.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/item_recycler_test.xml" value="0.18206521739130435" />
+        <entry key="app/src/main/res/layout/layout_fragment.xml" value="0.20742753623188406" />
+        <entry key="app/src/main/res/layout/layout_img.xml" value="0.20742753623188406" />
+        <entry key="app/src/main/res/xml/animate_scale.xml" value="0.15489130434782608" />
       </map>
     </option>
   </component>

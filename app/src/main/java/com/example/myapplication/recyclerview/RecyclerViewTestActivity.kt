@@ -57,7 +57,16 @@ class RecyclerViewTestActivity : AppCompatActivity() {
                     "  minHeight==${mBinding.rvTest.minimumHeight}"
         )
 
+        // 增补勘误
+        val url1="https://m.zhongheschool.com/fakao/bookerrata?closeBtn=y&env=production&bu=fakao&userId=6267e3750126370c5123662a&mobile=12378900000&uname=%E5%AD%A6%E5%91%98_53840183&os=android&domain=.zhongheschool.com&version=2.9.7&compiletime=2022.09.05.10.12.08&channel="
+        // 全国分校
+        val url2="https://osscdn.zhongheschool.com/jiaoxuejihua/index_fakaoh5.html?env=production&bu=faka&userId=6267e3750126370c5123662a&mobile=12378900000&uname=%E5%AD%A6%E5%91%98_53840183&os=android&domain=.zhongheschool.com&version=2.9.7&compiletime=2022.09.05.10.12.08&channel="
+        // 分销中心
+        val url3="https://www.zhongheschool.com/fakao/mall/allSaleMan/center?env=production&bu=fakao&userId=6267e3750126370c5123662a&mobile=12378900000&uname=%E5%AD%A6%E5%91%98_53840183&os=android&domain=.zhongheschool.com&version=2.9.7&compiletime=2022.09.05.10.12.08&channel="
 
+//        mBinding.wbWebview.loadUrl(url1)
+//        mBinding.wbWebview.loadUrl(url2)
+     //   mBinding.wbWebview.loadUrl(url3)
     }
 
     override fun onResume() {
