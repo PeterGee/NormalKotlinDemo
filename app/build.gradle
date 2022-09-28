@@ -105,4 +105,7 @@ dependencies {
     // Xposed
     compileOnly 'de.robv.android.xposed:api:82'
     compileOnly 'de.robv.android.xposed:api:82:sources'
+
+    def dynamicanimation_version = "1.0.0"
+    implementation 'androidx.dynamicanimation:dynamicanimation:$dynamicanimation_version'
 }
