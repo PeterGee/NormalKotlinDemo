@@ -1,11 +1,6 @@
 package com.example.myapplication.room
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import com.example.myapplication.R
-import com.example.myapplication.room.model.User
-import com.example.myapplication.room.model.UserDao
 
 /**
  * @date 2021/4/14
@@ -13,7 +8,7 @@ import com.example.myapplication.room.model.UserDao
  * @desc Room数据库
  */
 class  RoomTestActivity : AppCompatActivity() {
-
+/*
     private var mDb: AppDatabase? = null
     private var mDao: UserDao? = null
     val mUser = User(1, "张", "三", 1, "北京", 28, "未知")
@@ -27,7 +22,7 @@ class  RoomTestActivity : AppCompatActivity() {
         // migrationDb()
 
         initView()
-    }
+    }*/
 
     private fun migrationDb() {
     /*    Room.databaseBuilder(this, AppDatabase::class.java, DB_NAME)

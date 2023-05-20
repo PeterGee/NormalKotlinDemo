@@ -14,6 +14,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
         // 格式为-->group:module:version
         // classpath 'com.peter.groovy:myPlugin:1.0.0'
         // NOTE: Do not place your application dependencies here; they belong

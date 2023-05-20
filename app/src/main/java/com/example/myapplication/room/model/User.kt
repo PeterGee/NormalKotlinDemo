@@ -1,13 +1,16 @@
+/*
 package com.example.myapplication.room.model
 
 import android.graphics.Bitmap
 import androidx.room.*
 
+*/
 /**
  * @date 2021/4/14
  * @author qipeng
  * @desc Room entity
- */
+ *//*
+
 
 open class BaseUser(
     var picture: Bitmap? = null
@@ -32,17 +35,21 @@ data class User(
     @ColumnInfo val region: String?
 ) : BaseUser()
 
+*/
 /**
  * 返回tuple元组
- */
+ *//*
+
 data class NameTuple(
     @ColumnInfo(name = "first_name") val firstName: String?,
     @ColumnInfo(name = "last_name") val lastName: String?
 )
 
+*/
 /**
  * 创建表关联
- */
+ *//*
+
 data class UserAndNameTuple(
     @Embedded val user: User,
     // parentColumn设置父实体主键列的名称，并将 entityColumn 设置为引用父实体主键的子实体列的名称
@@ -99,3 +106,4 @@ data class PlaylistWithSongs(
     val playlists:Playlist
 )
 
+*/
