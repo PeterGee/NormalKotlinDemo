@@ -31,53 +31,65 @@
         <meta-data
                 android:name="xposedminversion"
                 android:value="54" />
-        <activity android:name=".customView.MainActivity" />
+        <activity android:name=".customView.MainActivity"
+                android:exported="false"/>
         <activity
                 android:name=".customView.IndicatorDemoActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity">
+                tools:ignore="LockedOrientationActivity"
+                android:exported="false">
         </activity>
-        <activity android:name=".customView.BezierLineActivity" />
-        <activity android:name=".workManager.WorkManagerActivity" />
-        <activity android:name=".flowLayout.FlowLayoutActivity" />
-        <activity android:name=".circlePicture.CirclePictureActivity" />
-        <activity android:name=".jetpack_demo.dataBinding.ui.JetPackTestActivity" />
+        <activity android:name=".customView.BezierLineActivity"
+                android:exported="false"/>
+        <activity android:name=".workManager.WorkManagerActivity"
+                android:exported="false"/>
+        <activity android:name=".flowLayout.FlowLayoutActivity"
+                android:exported="false"/>
+        <activity android:name=".circlePicture.CirclePictureActivity"
+                android:exported="false"/>
+        <activity android:name=".jetpack_demo.dataBinding.ui.JetPackTestActivity"
+                android:exported="false"/>
         <activity
                 android:name=".jetpack_demo.lifeCycle.LifeCycleDemoActivity"
-                android:screenOrientation="fullSensor" />
-        <activity android:name=".navigation.NavigationActivity" />
+                android:screenOrientation="fullSensor"
+                android:exported="false"/>
+        <activity android:name=".navigation.NavigationActivity"
+                android:exported="false"/>
         <activity
                 android:name=".router.RouterMainActivity"
-                android:exported="true" />
+                android:exported="true"
+                />
         <activity
                 android:name=".router.ARouterTestActivity"
                 android:exported="true" />
         <activity
                 android:name=".router.RouterSecondActivity"
                 android:exported="true" />
-        <activity android:name=".testAcivity.MainActivity" />
-        <activity android:name=".testAcivity.ActivityOne" />
-        <activity android:name=".testAcivity.ParseActivity" />
-        <activity android:name=".testAcivity.TestActivity1" />
-        <activity android:name=".testAcivity.TestInterceptorActivity" />
-        <activity android:name=".testAcivity.TestWebview" />
-        <activity android:name=".testAcivity.UrlSchemeActivity" />
-        <activity android:name=".testAcivity.ActivityResult" />
-        <activity android:name=".surfaceView.SurfaceViewDemoActivity" />
-        <activity android:name=".jetpack_demo.liveData.view.LiveDataDemoActivity" />
-        <activity android:name=".touchablePop.CustomPopActivity" />
-        <activity android:name=".lamada.LamadaTestActivity" />
-        <activity android:name=".innerclass.InnerClassTestActivity" />
-        <activity android:name=".innerclass.InnerClassTwo" />
-        <activity android:name=".refreshlayout.RefreshTestActivity" />
-        <activity android:name=".room.RoomTestActivity" />
-        <activity android:name=".tablayout.TableLayoutActivity" />
-        <activity android:name=".okHttp.OkHttpTestActivity" />
-        <activity android:name=".designMode.ModeActivity" />
-        <activity android:name=".okHttp.activity.OkHttpTestTwoActivity" />
-        <activity android:name=".designMode.DesignModeActivity" />
-        <activity android:name=".motionLayout.MotionLayoutActivity" />
-        <activity android:name=".recyclerview.RecyclerViewTestActivity" />
+        <activity android:name=".testAcivity.MainActivity"
+                android:exported="false"/>
+        <activity android:name=".testAcivity.ActivityOne"
+                android:exported="false"/>
+        <activity android:name=".testAcivity.ParseActivity"  android:exported="false"/>
+        <activity android:name=".testAcivity.TestActivity1"  android:exported="false"/>
+        <activity android:name=".testAcivity.TestInterceptorActivity"  android:exported="false"/>
+        <activity android:name=".testAcivity.TestWebview"  android:exported="false"/>
+        <activity android:name=".testAcivity.UrlSchemeActivity"  android:exported="false"/>
+        <activity android:name=".testAcivity.ActivityResult"  android:exported="false"/>
+        <activity android:name=".surfaceView.SurfaceViewDemoActivity"  android:exported="false"/>
+        <activity android:name=".jetpack_demo.liveData.view.LiveDataDemoActivity"  android:exported="false"/>
+        <activity android:name=".touchablePop.CustomPopActivity"  android:exported="false"/>
+        <activity android:name=".lamada.LamadaTestActivity"  android:exported="false"/>
+        <activity android:name=".innerclass.InnerClassTestActivity"  android:exported="false"/>
+        <activity android:name=".innerclass.InnerClassTwo"  android:exported="false"/>
+        <activity android:name=".refreshlayout.RefreshTestActivity"  android:exported="false"/>
+        <activity android:name=".room.RoomTestActivity"  android:exported="true"/>
+        <activity android:name=".tablayout.TableLayoutActivity"  android:exported="false"/>
+        <activity android:name=".okHttp.OkHttpTestActivity" android:exported="false" />
+        <activity android:name=".designMode.ModeActivity"  android:exported="false"/>
+        <activity android:name=".okHttp.activity.OkHttpTestTwoActivity"  android:exported="false"/>
+        <activity android:name=".designMode.DesignModeActivity"  android:exported="false"/>
+        <activity android:name=".motionLayout.MotionLayoutActivity"  android:exported="false"/>
+        <activity android:name=".recyclerview.RecyclerViewTestActivity"  android:exported="false"/>
 
         <activity
                 android:name=".animation.AnimationActivity"

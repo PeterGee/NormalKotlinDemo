@@ -12,7 +12,7 @@ import com.example.myapplication.room.model.UserDao
  * @author qipeng
  * @desc Room数据库
  */
-class RoomTestActivity : AppCompatActivity() {
+class  RoomTestActivity : AppCompatActivity() {
 
     private var mDb: AppDatabase? = null
     private var mDao: UserDao? = null
