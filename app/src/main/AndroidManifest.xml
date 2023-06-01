@@ -103,7 +103,9 @@
                 android:exported="false" />
         <activity
                 android:name=".touchablePop.CustomPopActivity"
-                android:exported="false" />
+                android:exported="false" >
+
+        </activity>
         <activity
                 android:name=".lamada.LamadaTestActivity"
                 android:exported="false" />
@@ -147,6 +149,9 @@
 
         <activity
                 android:name=".greendao.FirstGreenDaoActivity"
+                android:exported="true"/>
+
+        <activity android:name=".textviewDemo.TextCopyActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
