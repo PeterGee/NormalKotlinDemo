@@ -2,6 +2,7 @@ package com.example.myapplication.coroutine
 
 import android.app.Activity
 import android.os.Bundle
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
@@ -9,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.cancel
@@ -16,13 +18,14 @@ import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import java.util.concurrent.CancellationException
-import kotlin.coroutines.coroutineContext
 import kotlin.system.measureTimeMillis
 
 /**
@@ -35,9 +38,13 @@ class KotlinScopeTest :Activity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+         mainScopeTest()
+    }
+
+    private fun mainScopeTest() {
         mainScope.launch {
-            repeat(5){
-                delay(1000L*it)
+            repeat(5) {
+                delay(1000L * it)
             }
 
         }
@@ -67,15 +74,77 @@ fun main(){
        // cancelCoroutineMethod()
         // cancelCoroutineMethodTwo()
         // releaseCoroutine()
-        nonCancelableCoroutine()
+       // nonCancelableCoroutine()
+        // withTimeoutMethod()
+        // coroutineExceptionHandlerMethod()
+
     }
+
+/**
+ * 自己主动捕获异常
+ */
+fun coroutineExceptionHandlerMethod() = runBlocking {
+    val handler = CoroutineExceptionHandler{
+        _,exception->
+            log("Caught $exception")
+    }
+
+    val job = GlobalScope.launch (handler){
+        throw AssertionError()
+    }
+
+    val deferred = GlobalScope.async(handler) {
+        throw ArithmeticException()
+    }
+    joinAll(job,deferred)
+}
+
+fun withTimeoutMethod() = runBlocking {
+    log("start")
+    val result = withTimeoutOrNull(300){
+        repeat(5){
+            delay(500)
+        }
+        200
+    }
+    log(result?:"null")
+    log("end")
+}
 
 /**
  * 不可取消的协程
  */
 fun nonCancelableCoroutine() = runBlocking {
     log("start")
+    val launchA = launch {
+        try {
+            repeat(5){
+                delay(50)
+                log("launchA - $it")
+            }
+        }finally {
+            delay(50)
+            log("LaunchA isCompleted")
+        }
+    }
 
+    val launchB = launch{
+        try {
+            repeat(5){
+                delay(50)
+                log("LaunchB -$it")
+            }
+        }finally {
+            withContext(NonCancellable){
+                delay(50)
+                log("LaunchB isCompleted")
+            }
+        }
+    }
+    delay(200)
+    launchA.cancel()
+    launchB.cancel()
+    log("end")
 }
 
 /**
