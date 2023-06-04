@@ -235,7 +235,7 @@ fun fairCoroutineMethod(){
 fun main(args: Array<String>) {
     // methodOne()
     // methodTwo()
-    // methodThree()
+    methodThree()
     // streamMethod()
     // channelMethod()
     // closeChannelMethod()
@@ -245,7 +245,7 @@ fun main(args: Array<String>) {
     // launchInProcessorMethod()
     // bufferCoroutineMethod()
     // fairCoroutineMethod()
-    counterMethod()
+    // counterMethod()
 }
 
 fun counterMethod() {

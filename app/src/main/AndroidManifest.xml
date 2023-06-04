@@ -153,11 +153,17 @@
 
         <activity android:name=".textviewDemo.TextCopyActivity"
                 android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+        </activity>
+
+        <activity android:name=".coroutine.KotlinScopeTest"
+                android:exported="true">
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+
             </intent-filter>
         </activity>
+
 
 
     </application>
