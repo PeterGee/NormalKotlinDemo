@@ -1,5 +1,6 @@
 package com.example.myapplication.leetcode.stack;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -10,6 +11,8 @@ import java.util.Stack;
 class StackList {
     private Stack<Object> stackOne = new Stack<>();
     private Stack<Object> stackTwo = new Stack<>();
+    private ArrayList list=new ArrayList();
+
 
     public void push(Object o) {
         stackOne.push(o);

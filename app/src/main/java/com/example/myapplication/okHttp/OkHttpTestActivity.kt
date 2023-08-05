@@ -40,6 +40,7 @@ class OkHttpTestActivity : AppCompatActivity() {
     private var mUrl = "https://www.publicobject.com/helloworld.txt"
     private var mUrl2 = "https://www.baidu.com/"
     private var mUrl3 = "https://www.nytimes.com/"
+    private var mUrl4 = "http://10.10.10.138:8080/user"
 
     // okHttpClient
     private val mClient = getOkClient()
@@ -450,8 +451,9 @@ class OkHttpTestActivity : AppCompatActivity() {
     }
 
     private fun initRequest() {
-        mRequest = Request.Builder().url(mUrl2).build()
+        mRequest = Request.Builder().url(mUrl4).build()
         mRequest2 = Request.Builder().url(mUrl2).build()
+
     }
 
     private fun doSyncGet() {
@@ -483,7 +485,8 @@ class OkHttpTestActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    Log.d(TAG, " get success  response=== ${response.body.toString()}")
+                   // val bean = Gson().fromJson(response.toString(),PersonJava::class.java)
+                   // Log.d(TAG, " get success  response=== age===  ${bean.age}   name=== ${bean.name}")
                     updateText(response)
                     response.body?.close()
                 }

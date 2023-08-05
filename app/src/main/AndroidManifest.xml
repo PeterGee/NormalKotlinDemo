@@ -126,7 +126,13 @@
                 android:exported="false" />
         <activity
                 android:name=".okHttp.OkHttpTestActivity"
-                android:exported="false" />
+                android:exported="true" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+            </intent-filter>
+        </activity>
         <activity
                 android:name=".designMode.ModeActivity"
                 android:exported="false" />
@@ -157,11 +163,6 @@
 
         <activity android:name=".coroutine.KotlinScopeTest"
                 android:exported="true">
-            <intent-filter >
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-
-            </intent-filter>
         </activity>
 
 
