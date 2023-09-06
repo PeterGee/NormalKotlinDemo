@@ -34,7 +34,7 @@ class DiffAdapter(oldList: MutableList<String>,newList:MutableList<String>):Recy
         holder.tvDiff.text = mNewList[position]
     }
 
-    open fun updateListData(newList:MutableList<String>){
+     fun updateListData(newList:MutableList<String>){
         val mDiffCallBack = object : DiffUtil.Callback() {
             override fun getOldListSize(): Int {
                 return mOldList.size
