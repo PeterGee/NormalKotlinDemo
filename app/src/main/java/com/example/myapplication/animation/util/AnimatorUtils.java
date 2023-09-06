@@ -53,7 +53,8 @@ public final class AnimatorUtils {
         Path path = new Path();
         // 移动到起始点（贝塞尔曲线的起点）
         path.moveTo(startX, startY);
-        path.quadTo((startX + toX) / 2, startY, toX, toY);
+       // path.quadTo((startX + toX) / 2, startY, toX, toY);
+        path.quadTo(startX, toY, toX, toY);
         final PathMeasure pathMeasure = new PathMeasure(path, false);
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, pathMeasure.getLength());
         // 设置动画时间

@@ -25,6 +25,7 @@ import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
 import com.example.myapplication.okHttp.util.LogUtil
 import kotlinx.android.synthetic.main.activity_animation.*

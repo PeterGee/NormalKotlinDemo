@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+            android:id="@+id/tv_diff_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="数字"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="10dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

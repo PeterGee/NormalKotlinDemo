@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
 import com.example.myapplication.R
+import com.example.myapplication.animation.util.AnimatorUtils
 import com.example.myapplication.animation.util.CartAnimUtil
 
 
@@ -39,11 +40,11 @@ class CartActivity : FragmentActivity() {
 
     // 初始化监听
     private fun initListener() {
-        mAddOne.setOnClickListener { view ->CartAnimUtil.playAnim(this,view,mCart,mRootView)
+       /* mAddOne.setOnClickListener { view ->CartAnimUtil.playAnim(this,view,mCart,mRootView)
         // playAnim(view)
             // AnimatorUtils.doCartAnimator(this,mAddOne,mCart,mRootView,null)
-        }
-        mAddTwo.setOnClickListener { view -> CartAnimUtil.playAnim(this,view,mCart,mRootView) }
+        }*/
+        mAddOne.setOnClickListener { view -> AnimatorUtils.doCartAnimator(this,mAddOne,mCart,mRootView,null) }
         mAddThree.setOnClickListener { view -> CartAnimUtil.playAnim(this,view,mCart,mRootView) }
     }
 
