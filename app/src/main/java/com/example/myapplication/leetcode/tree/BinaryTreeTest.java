@@ -21,7 +21,9 @@ class BinaryTreeTest {
         int[] inorderThree = {1};
         BSTNode<Integer> balanceTwo = BinaryTree.reConstructBinaryTree(preorderThree, inorderThree);
 
-       // printTree(tree);
+        printTree(balance);
+        System.out.println();
+        BinaryTree.levelTreeOrder(balance);
 
        // BinaryTree.findPathBySum(tree,18);
        // BinaryTree.findPathBySum(tree,12);
@@ -36,15 +38,15 @@ class BinaryTreeTest {
          // BinaryTree.printTreeMultiLines(tree);
         // BinaryTree.printTreeMultiLineRecursive(tree);
 
-        BinaryTree.printTreeZhi(tree);
+        // BinaryTree.printTreeZhi(tree);
 
 
         // System.out.println(BinaryTree.findMaxKNode(tree,1).key);
         // System.out.println(BinaryTree.findMinKNode(tree,1).key);
 
-        System.out.println(BinaryTree.hasChildTree(tree,balance));
-        System.out.println(BinaryTree.hasChildTree(tree,tree));
-        System.out.println(BinaryTree.hasChildTree(balance,balanceTwo));
+        // System.out.println(BinaryTree.hasChildTree(tree,balance));
+        // System.out.println(BinaryTree.hasChildTree(tree,tree));
+        // System.out.println(BinaryTree.hasChildTree(balance,balanceTwo));
 
     }
 

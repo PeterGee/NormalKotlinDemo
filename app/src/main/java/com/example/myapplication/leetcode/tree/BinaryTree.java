@@ -3,6 +3,7 @@ package com.example.myapplication.leetcode.tree;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @author qipeng
@@ -518,6 +519,33 @@ class BinaryTree<T extends Comparable<T>> {
         if (parent == null) return false;
         if (parent.key != childTree.key) return false;
         return isChildTree(parent.left, childTree.left) && isChildTree(parent.right, childTree.right);
+    }
+
+
+    /**
+     * 层序遍历
+     * @param head
+     */
+    public static void levelTreeOrder(BSTNode head){
+        if (head == null) {
+            return;
+        }
+        // 创建一个队列用于层序遍历
+        Queue<BSTNode> queue = new LinkedList<>();
+        queue.offer(head);
+        while (!queue.isEmpty()) {
+            // 出队列并访问当前节点
+            BSTNode current = queue.poll();
+            System.out.print(current.key + " ");
+
+            // 将当前节点的左右子节点入队列
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
+        }
     }
 
 
