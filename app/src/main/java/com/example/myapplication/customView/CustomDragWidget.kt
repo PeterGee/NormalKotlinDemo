@@ -2,11 +2,14 @@ package com.example.myapplication.customView
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.DebugUtils
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.BounceInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.myapplication.okHttp.util.LogUtil
+import com.example.myapplication.util.DensityUtils
 import kotlin.math.min
 import kotlin.math.sqrt
 
@@ -30,6 +33,7 @@ class CustomDragWidget @JvmOverloads constructor(
     private var mRootTopY = 0
     private var clickedChild: View? = null
     private var mListener:IChildClickListener?=null
+    private val limitMinHeight = DensityUtils.dp2px(context,0f)
 
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
@@ -49,7 +53,7 @@ class CustomDragWidget @JvmOverloads constructor(
                     mIsDrug = false
                     mLastRawX = mRawX
                     mLastRawY = mRawY
-                    clickedChild = findChildViewUnder(ev.rawX.toInt(), ev.rawY.toInt());
+                    clickedChild = findChildViewUnder(ev.rawX.toInt(), ev.rawY.toInt())
                     val mViewGroup = parent as ViewGroup
                     val location = IntArray(2)
                     mViewGroup.getLocationInWindow(location)
@@ -59,7 +63,8 @@ class CustomDragWidget @JvmOverloads constructor(
                 }
 
                 MotionEvent.ACTION_MOVE -> {
-                    if (mRawX >= 0 && mRawX <= mRootMeasuredWidth && mRawY >= mRootTopY && mRawY <= mRootMeasuredHeight + mRootTopY) {
+                    LogUtil.D("tag","currentX === $mRawX  currentY=== $mRawY  mRootTopY=== $mRootTopY")
+                    if (mRawX >= 0 && mRawX <= mRootMeasuredWidth && mRawY >= mRootTopY + limitMinHeight && mRawY <= mRootMeasuredHeight + mRootTopY) {
                         val differenceValueX = mRawX - mLastRawX
                         val differenceValueY = mRawY - mLastRawY
                         if (!mIsDrug) {
