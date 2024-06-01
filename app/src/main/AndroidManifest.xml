@@ -173,6 +173,9 @@
         </activity>
 
         <activity android:name=".jetpack_demo.lifeCycle.LifeCycleTestActivity" android:exported="true">
+        </activity>
+
+        <activity android:name=".coroutine.MultiDialogDemoActivity" android:exported="true">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

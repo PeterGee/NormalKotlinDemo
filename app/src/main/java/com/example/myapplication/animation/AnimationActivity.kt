@@ -379,19 +379,19 @@ class AnimationActivity : FragmentActivity() {
             play(animatorSet).before(fadeAnimator).with(translationY)
             start()
             addListener(object : Animator.AnimatorListener {
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                     LogUtil.D(log = "onAnimationStart")
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     LogUtil.D(log = "onAnimationEnd")
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
+                override fun onAnimationCancel(animation: Animator) {
                     LogUtil.D(log = "onAnimationCancel")
                 }
 
-                override fun onAnimationRepeat(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
                     LogUtil.D(log = "onAnimationRepeat")
                 }
 
