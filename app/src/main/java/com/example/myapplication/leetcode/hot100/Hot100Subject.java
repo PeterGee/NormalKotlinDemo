@@ -19,6 +19,7 @@ class Hot100Subject {
         threeNumberSum();
     }
 
+    // 查找三个数之和等于0的三个数
     private static void threeNumberSum() {
         int[] arr = {1, 2, 3, -1, -2, 4, 0};
         System.out.println(findThreeNumber(arr));
