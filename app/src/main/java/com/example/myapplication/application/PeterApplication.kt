@@ -1,10 +1,15 @@
 package com.example.myapplication.application
 
 import android.app.Application
+import android.content.MutableContextWrapper
+import android.os.Looper
 import android.util.Log
+import android.webkit.WebView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.myapplication.BuildConfig
+import com.example.myapplication.webView.WebViewManager
 import com.opensource.svgaplayer.SVGAParser
+import java.util.Stack
 
 
 /**
@@ -23,13 +28,18 @@ class PeterApplication :Application(){
         Log.d("peter","PeterApplication")
         SVGAParser.shareParser().init(this);
         ARouter.init(this)
-
+        WebViewManager.prepare(this)
     }
 
     companion object{
         fun getInstance():PeterApplication{
             return PeterApplication()
         }
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        WebViewManager.destroy()
     }
 
 }
