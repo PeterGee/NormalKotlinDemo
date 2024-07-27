@@ -3,7 +3,7 @@ package com.example.myapplication.jetpack_demo.liveData.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.jetpack_demo.liveData.model.NameViewModel
 import kotlinx.android.synthetic.main.activity_name.*
@@ -21,7 +21,7 @@ class NameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_name)
 
         // 获取viewModel
-        nameModel = ViewModelProviders.of(this).get(NameViewModel::class.java)
+        nameModel = ViewModelProvider(this)[NameViewModel::class.java]
 
         val nameObserver = Observer<String> { newName ->
             tv_user_name.text = newName

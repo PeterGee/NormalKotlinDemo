@@ -12,7 +12,7 @@ import android.widget.TextView
  */
 class DrawableLeftCenterTextView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet
                                                            , defaultStyle: Int = 0) : TextView(context, attributeSet, defaultStyle) {
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val drawables = compoundDrawables
         drawables.let {

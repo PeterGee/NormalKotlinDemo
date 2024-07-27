@@ -57,7 +57,7 @@ object CartAnimUtil {
             imageView.y = pointF.y
         }
         valueAnimator.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 // 动画执行完毕，将执行动画的“添加”图标移除掉
                 parentView.removeView(imageView)

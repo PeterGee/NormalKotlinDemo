@@ -33,7 +33,7 @@ class JetPackTestActivity : AppCompatActivity() {
     }
 
     private fun viewModelFunction() {
-        val model= ViewModelProviders.of(this).get(ViewModelTest::class.java)
+        val model= ViewModelProvider(this)[ViewModelTest::class.java]
         model.getName().observe(this,{ data ->
             Log.d(mTag,"viewModel data is :$data")
         })

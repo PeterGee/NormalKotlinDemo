@@ -80,7 +80,7 @@ class BezierView @JvmOverloads constructor(
         eventTwoY = centerY + 200
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         mPaint.color = Color.BLUE
 

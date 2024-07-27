@@ -26,7 +26,7 @@ class LiveDataDemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_live_data_demo)
         // initViewModel
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         initData()
         initListener()
     }
