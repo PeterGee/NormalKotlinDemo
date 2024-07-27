@@ -3,7 +3,6 @@ package com.example.myapplication.jetpack_demo.lifeCycle
 import android.app.Activity
 import android.os.Bundle
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 
 /**
@@ -11,13 +10,13 @@ import androidx.lifecycle.LifecycleRegistry
  * @author qipeng
  * @desc lifeCycle demo
  */
-class LifeCycleDemoActivity : Activity(), LifecycleOwner {
+class LifeCycleDemoActivity : Activity() {
     private lateinit var lifecycleRegistry: LifecycleRegistry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 将生命周期与lifeCycle进行关联
-        lifecycleRegistry = LifecycleRegistry(this)
+        // lifecycleRegistry = LifecycleRegistry(this)
         lifecycleRegistry.markState(Lifecycle.State.CREATED)
     }
 
@@ -26,7 +25,7 @@ class LifeCycleDemoActivity : Activity(), LifecycleOwner {
         lifecycleRegistry.markState(Lifecycle.State.STARTED)
     }
 
-    override fun getLifecycle(): Lifecycle {
+    fun getLifecycle(): Lifecycle {
         return lifecycleRegistry
     }
 

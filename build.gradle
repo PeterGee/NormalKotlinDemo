@@ -3,7 +3,7 @@
 buildscript {
     apply from: 'gradleTest.gradle'
 
-    ext.kotlin_version = '1.6.21'
+    ext.kotlin_version = '1.7.20'
     ext.lifecycle_version = '2.3.5'
     repositories {
         google()

@@ -46,21 +46,17 @@ class LiveDataDemoActivity : AppCompatActivity() {
         mNameAll.postValue("张三")
 
         // map操作 对存储在 LiveData 对象中的值应用函数，并将结果传播到下游。
-        val mTransformMap = Transformations.map(mNameAll) { nameAll ->
-            "$nameAll, 李四"
+
+        val resultNameAll:LiveData<String> = mNameAll.map {
+                nameAll -> "$nameAll, 李四"
         }
 
-        val transformData=Transformations.map(mUser) {
+        val transformData=mUser.map {
             it.name + "${it.age}"
         }
 
         transformData.observe(this){
             Log.d("tag", "transformData $it")
-        }
-
-        mTransformMap.observe(this) {
-            Log.d("tag", "mMapData $it")
-            // D/tag: mMapData 张三, 李四
         }
 
 
@@ -69,7 +65,7 @@ class LiveDataDemoActivity : AppCompatActivity() {
         val mSwitchMapUser = MutableLiveData<User>()
         val mIsMap = MutableLiveData<Boolean>()
         // switchMap 将结果解封和分派到下游。传递给 switchMap() 的函数必须返回 LiveData 对象
-        val mSwitchMapData = Transformations.switchMap(mIsMap) { mIsMap ->
+        val mSwitchMapData = mIsMap.switchMap { mIsMap ->
             if (mIsMap) {
                 mMapUser.postValue(mUser.value)
                 mMapUser

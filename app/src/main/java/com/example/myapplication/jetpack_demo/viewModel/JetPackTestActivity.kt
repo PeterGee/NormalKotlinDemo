@@ -34,9 +34,9 @@ class JetPackTestActivity : AppCompatActivity() {
 
     private fun viewModelFunction() {
         val model= ViewModelProvider(this)[ViewModelTest::class.java]
-        model.getName().observe(this,{ data ->
-            Log.d(mTag,"viewModel data is :$data")
-        })
+        model.getName().observe(this) { data ->
+            Log.d(mTag, "viewModel data is :$data")
+        }
     }
 
     /**
@@ -64,35 +64,35 @@ class JetPackTestActivity : AppCompatActivity() {
         val mLiveDataTwo = MutableLiveData<String>()
         // switcher
         val mLiveDataSwitch = MutableLiveData<Boolean>()
-        mLiveData.observe(this,
-            { t -> Log.d(Tag, "t is $t") })
+        mLiveData.observe(this
+        ) { t -> Log.d(Tag, "t is $t") }
 
         // postValue 工作线程使用
         // setValue 主线程使用
         mLiveData.postValue("firstLiveData")
 
         // Transformations.map()
-        val mTransformations = Transformations.map(mLiveData) { t ->
+        val mTransformations = mLiveData.map { t ->
             "it is my firstLiveData $t"
         }
-        mTransformations.observe(this, { data ->
+        mTransformations.observe(this) { data ->
             Log.d(Tag, "transformed data is $data")
-        })
+        }
 
         // 更新数据
         mLiveData.postValue("secondLiveData")
 
         // switchMap
-        val mSwitchMapData = Transformations.switchMap(mLiveDataSwitch) { transformedData ->
+        val mSwitchMapData = mLiveDataSwitch.switchMap{ transformedData ->
             if (transformedData) {
                 mLiveData
             } else {
                 mLiveDataTwo
             }
         }
-        mSwitchMapData.observe(this, { switchMapData ->
+        mSwitchMapData.observe(this) { switchMapData ->
             Log.d(Tag, "switchMap data is $switchMapData")
-        })
+        }
         mLiveDataSwitch.postValue(true)
         mLiveData.postValue("mLiveData")
         mLiveDataTwo.postValue("mLiveDataTwo")
@@ -111,9 +111,9 @@ class JetPackTestActivity : AppCompatActivity() {
             mLiveDataTwo
         ) { t -> Log.d(Tag, "mLiveDataTwo change data is : $t") }
 
-        mediatorData.observe(this, { mediatorData ->
+        mediatorData.observe(this) { mediatorData ->
             Log.d(Tag, "final mediatorData data is : $mediatorData")
-        })
+        }
 
         mLiveData.postValue("mediatorData")
     }
