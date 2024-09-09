@@ -6,8 +6,16 @@ buildscript {
     ext.kotlin_version = '1.7.20'
     ext.lifecycle_version = '2.3.5'
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        // gradle-plugin
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        // google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        // jcenter()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        // central()
+        maven { url 'https://maven.aliyun.com/repository/central' }
         google()
-        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -26,10 +34,17 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         maven { url 'https://jitpack.io' }
         mavenCentral()
-        
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        // gradle-plugin
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        // google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        // jcenter()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        // central()
+        maven { url 'https://maven.aliyun.com/repository/central' }
     }
     configurations.configureEach {
         resolutionStrategy {
