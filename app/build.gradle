@@ -40,6 +40,10 @@ android {
         enabled = true
     }
 
+    viewBinding{
+        enable = true
+    }
+
     buildFeatures {
         viewBinding true
     }
