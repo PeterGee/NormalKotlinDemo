@@ -1,10 +1,8 @@
 package com.example.myapplication.viewbinding
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
-import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityViewBingdingBinding
 
 /**
