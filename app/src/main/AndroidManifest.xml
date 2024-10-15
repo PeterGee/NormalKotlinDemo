@@ -185,9 +185,14 @@
         </activity>
 
         <activity android:name=".viewbinding.ViewBindingActivity" android:exported="true">
-            <intent-filter >
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+        </activity>
+
+        <activity
+                android:name=".mmkv.MMKVTestActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
