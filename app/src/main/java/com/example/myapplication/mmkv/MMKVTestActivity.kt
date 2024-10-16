@@ -1,5 +1,7 @@
 package com.example.myapplication.mmkv
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMmkvBinding
@@ -15,12 +17,21 @@ import java.lang.StringBuilder
 class MMKVTestActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMmkvBinding
     private lateinit var mMmkv: MMKV
+    private lateinit var mPreference:SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMmkvBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        mMmkv = MMKV.defaultMMKV()
+       //  mMmkv = MMKV.defaultMMKV()
+        // 设置指定id
+        mMmkv = MMKV.mmkvWithID("MMKVActivityId")
+        initSharedPreference()
         initView()
+    }
+
+    private fun initSharedPreference() {
+        mPreference = getSharedPreferences("testPreferences", Context.MODE_PRIVATE)
+        mPreference.edit().putString("preferenceString", "preference").apply()
     }
 
     private fun initView() {
@@ -45,6 +56,18 @@ class MMKVTestActivity : AppCompatActivity() {
             queryAndSetText()
         }
 
+        mBinding.btnClearData.setOnClickListener {
+            mMmkv.clearAll()
+            queryAndSetText()
+        }
+
+        mBinding.btnMigration.setOnClickListener {
+            // sharePreference数据迁移
+            mMmkv.importFromSharedPreferences(mPreference)
+            mPreference.edit().clear().commit()
+            queryAndSetText()
+        }
+
         mBinding.btnQueryData.setOnClickListener {
             queryAndSetText()
         }
@@ -57,10 +80,12 @@ class MMKVTestActivity : AppCompatActivity() {
         val intValue = mMmkv.decodeInt("intValue")
         val boolValue = mMmkv.decodeBool("booleanValue").toString()
         val longValue = mMmkv.decodeLong("longValue")
+        val preferenceValue = mMmkv.decodeString("preferenceString")
         builder.append(strValue)
         builder.append(intValue)
         builder.append(boolValue)
         builder.append(longValue)
+        builder.append(preferenceValue)
 
         mBinding.etData.setText(builder.toString())
     }

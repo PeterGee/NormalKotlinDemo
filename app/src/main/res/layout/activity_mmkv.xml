@@ -34,11 +34,24 @@
                 android:text="Query"
                 app:layout_constraintTop_toBottomOf="@+id/btnUpdateData" />
 
+        <Button
+                android:id="@+id/btnClearData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Clear"
+                app:layout_constraintTop_toBottomOf="@+id/btnQueryData" />
+        <Button
+                android:id="@+id/btnMigration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Migration"
+                app:layout_constraintTop_toBottomOf="@+id/btnClearData" />
+
         <EditText
                 android:id="@+id/etData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/btnQueryData" />
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
