@@ -3,6 +3,7 @@ package com.example.myapplication.mmkv
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMmkvBinding
 import com.tencent.mmkv.MMKV
@@ -36,11 +37,17 @@ class MMKVTestActivity : AppCompatActivity() {
 
     private fun initView() {
         mBinding.btnAddData.setOnClickListener {
+            printTime()
             mMmkv.encode("stringOne", "stringOne")
+            printTime()
             mMmkv.encode("intValue", 100)
+            printTime()
             mMmkv.encode("booleanValue", true)
+            printTime()
             mMmkv.encode("longValue", 1.1111)
+            printTime()
             queryAndSetText()
+            printTime()
         }
 
         mBinding.btnUpdateData.setOnClickListener {
@@ -88,5 +95,9 @@ class MMKVTestActivity : AppCompatActivity() {
         builder.append(preferenceValue)
 
         mBinding.etData.setText(builder.toString())
+    }
+
+    private fun printTime(){
+        Log.d("tag", "time=== "+System.currentTimeMillis())
     }
 }
