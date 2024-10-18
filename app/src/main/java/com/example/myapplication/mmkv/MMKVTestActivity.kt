@@ -32,7 +32,9 @@ class MMKVTestActivity : AppCompatActivity() {
 
     private fun initSharedPreference() {
         mPreference = getSharedPreferences("testPreferences", Context.MODE_PRIVATE)
+        printTime()
         mPreference.edit().putString("preferenceString", "preference").apply()
+        printTime()
     }
 
     private fun initView() {
