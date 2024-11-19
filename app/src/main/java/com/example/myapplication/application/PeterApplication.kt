@@ -1,16 +1,12 @@
 package com.example.myapplication.application
 
 import android.app.Application
-import android.content.MutableContextWrapper
-import android.os.Looper
 import android.util.Log
-import android.webkit.WebView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.webView.WebViewManager
 import com.opensource.svgaplayer.SVGAParser
 import com.tencent.mmkv.MMKV
-import java.util.Stack
 
 
 /**
