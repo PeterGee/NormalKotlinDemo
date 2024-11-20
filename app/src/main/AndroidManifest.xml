@@ -193,7 +193,10 @@
         </activity>
 
         <activity android:name=".jetpack_demo.highLevelFunction.HighLevelFunctionActivity" android:exported="true">
-            <intent-filter >
+        </activity>
+
+        <activity android:name=".layerList.LayerListActivity" android:exported="true">
+             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
