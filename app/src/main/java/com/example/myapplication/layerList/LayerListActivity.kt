@@ -18,6 +18,10 @@ class LayerListActivity:AppCompatActivity() {
         initView()
     }
     private fun initView() {
-
+        mBinding.progressBar.progress = 30
+        mBinding.progressBar2.progress = 80
+        mBinding.progressBar3.progress = 90
+        mBinding.progressBar4.progress = 100
+        mBinding.progressBar5.progress = 10
     }
 }

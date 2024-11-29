@@ -270,4 +270,7 @@
         <attr name="canFoldAgain" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="CapsuleIndicatorProgress">
+        <attr name="changeByProgress" format="boolean" />
+    </declare-styleable>
 </resources>
