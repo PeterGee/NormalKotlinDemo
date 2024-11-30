@@ -22,16 +22,16 @@ class CapsuleIndicatorProgress @JvmOverloads constructor(
     defStyleAttr: Int = android.R.attr.progressBarStyleHorizontal
 ) : ProgressBar(context, attrs, defStyleAttr) {
     // 橙、黄、蓝、绿
-    private val startColorList = arrayOf(
+    private val endColorList = arrayOf(
         Color.parseColor("#FB5200"),
         Color.parseColor("#FF8103"),
-        Color.parseColor("#03D3FF"),
+        Color.parseColor("#087AFF"),
         Color.parseColor("#0DC43D")
     )
-    private val endColorList = arrayOf(
+    private val startColorList  = arrayOf(
         Color.parseColor("#FF9064"),
-        Color.parseColor("#FF8103"),
-        Color.parseColor("#087AFF"),
+        Color.parseColor("#FFE06D"),
+        Color.parseColor("#03D3FF"),
         Color.parseColor("#85FB13")
     )
     private val indicatorColorList = arrayOf(

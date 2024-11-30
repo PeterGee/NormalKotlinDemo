@@ -22,6 +22,6 @@ class LayerListActivity:AppCompatActivity() {
         mBinding.progressBar2.progress = 80
         mBinding.progressBar3.progress = 90
         mBinding.progressBar4.progress = 100
-        mBinding.progressBar5.progress = 10
+        mBinding.progressBar5.progress = 0
     }
 }
