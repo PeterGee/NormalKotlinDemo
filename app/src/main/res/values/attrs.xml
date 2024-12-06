@@ -273,4 +273,14 @@
     <declare-styleable name="CapsuleIndicatorProgress">
         <attr name="changeByProgress" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="DailyPlanNumberProgress">
+        <attr name="progress_textSize" format="dimension" />
+        <attr name="progress_textPadding" format="dimension" />
+        <attr name="color_type" format="enum" >
+            <enum name="dark_blue" value="0"/>
+            <enum name="orange" value="1"/>
+            <enum name="light_blue" value="2"/>
+        </attr>
+    </declare-styleable>
 </resources>

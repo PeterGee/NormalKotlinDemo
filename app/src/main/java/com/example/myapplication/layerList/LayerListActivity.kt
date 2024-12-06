@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLayerListBinding
+import kotlinx.android.synthetic.main.activity_layer_list.numberProgress
 import java.util.ArrayList
 
 
@@ -23,9 +24,7 @@ class LayerListActivity:AppCompatActivity() {
         initView()
     }
     private fun initView() {
-       /* for (i in 0..100) {
-            progressList.add(i)
-        }*/
+        numberProgress.setData("100", 100)
         progressList.add(10)
         progressList.add(90)
         val mAdapter = ProgressAdapter(R.layout.item_progress)
@@ -34,6 +33,8 @@ class LayerListActivity:AppCompatActivity() {
             adapter = mAdapter
         }
         mAdapter.setNewData(progressList)
+
+
 
     }
 }
