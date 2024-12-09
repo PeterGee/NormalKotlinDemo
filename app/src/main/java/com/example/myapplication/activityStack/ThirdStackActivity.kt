@@ -2,7 +2,6 @@ package com.example.myapplication.activityStack
 
 import android.content.Intent
 import android.os.Bundle
-import android.window.OnBackInvokedDispatcher
 import com.example.myapplication.databinding.ActivityFirstStackBinding
 
 /**
@@ -25,7 +24,4 @@ class ThirdStackActivity:BaseStackActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        finishAll()
-    }
 }
