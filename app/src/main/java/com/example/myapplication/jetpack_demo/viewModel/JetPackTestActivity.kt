@@ -4,10 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.*
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.map
+import androidx.lifecycle.observe
+import androidx.lifecycle.switchMap
 import com.example.myapplication.R
 import com.example.myapplication.viewpager2.ViewPagerTwoActivity
-import kotlinx.android.synthetic.main.activity_jetpack_test.*
+import kotlinx.android.synthetic.main.activity_jetpack_test.tv_appbar
 
 /**
  * @date 2020/9/15

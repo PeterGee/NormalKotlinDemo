@@ -196,12 +196,19 @@
         </activity>
 
         <activity android:name=".layerList.LayerListActivity" android:exported="true">
-             <intent-filter >
+
+        </activity>
+
+        <activity android:name=".activityStack.FirstStackActivity" android:exported="true">
+            <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".activityStack.SecondStackActivity" android:exported="true" />
+        <activity android:name=".activityStack.ThirdStackActivity" android:exported="true" />
+        <activity android:name=".activityStack.ForthStackActivity" android:exported="true" />
 
     </application>
 
