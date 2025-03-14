@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+        <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:descendantFocusability="beforeDescendants"
+                android:fillViewport="true">
+
+            <com.example.myapplication.widget.DeepSeekTextView
+                    android:id="@+id/deepSeekTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:paddingBottom="32dp"
+                    android:scrollbars="vertical"
+                    android:textSize="13sp" />
+
+        </androidx.core.widget.NestedScrollView>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_black" />
+
+        <Button
+                android:id="@+id/startButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="点击开始思考"
+                android:textSize="16sp" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/clearButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="清空内容"
+                    android:textSize="16sp" />
+
+            <Button
+                    android:id="@+id/copyButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="复制内容"
+                    android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
