@@ -5,10 +5,8 @@ package com.example.myapplication.widget
  * @Date 2025/3/14
  * @Desc
  */
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.RequiresApi
 import org.json.JSONObject
 
 class MockEventStreamProcessor(private val textView: DeepSeekTextView) {
