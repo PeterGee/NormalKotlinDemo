@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <Button
+                android:id="@+id/addInt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add_int"/>
+        <Button
+                android:id="@+id/addString"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add_string"/>
+        <Button
+                android:id="@+id/addBoolean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add_boolean"/>
+        <Button
+                android:id="@+id/addLong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add_long"/>
+        <Button
+                android:id="@+id/DeleteData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="delete"/>
+
+        <Button
+                android:id="@+id/queryData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="query"/>
+        <EditText
+                android:id="@+id/etContent"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@null"
+                android:textColor="@color/color_E3AC62"/>
+    </LinearLayout>
+</layout>

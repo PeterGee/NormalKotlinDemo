@@ -201,7 +201,10 @@
 
         <activity android:name=".activityStack.FirstStackActivity" android:exported="true"/>
         <activity android:name=".deepseek.DeepSeekTestActivity" android:exported="true">
-            <intent-filter >
+        </activity>
+
+        <activity android:name=".mmkv.EncryptedSpActivity" android:exported="true">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

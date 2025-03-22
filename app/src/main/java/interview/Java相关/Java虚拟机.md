@@ -289,7 +289,7 @@ JVM在判定两个class是否相同时，不仅要判断两个类名否相同，
 
 对于Android而言，最终的apk文件包含的是dex类型的文件，dex文件是将class文件重新打包，打包的规则又不是简单地压缩，而是完全对class文件内部的各种函数表进行优化，产生一个新的文件，即dex文件。因此加载某种特殊的Class文件就需要特殊的类加载器DexClassLoader。
 
-可以动态加载Jar通过URLClassLoader
+可以动态加载Jar通过URLClassLoader 
 
 1.ClassLoader 隔离问题：JVM识别一个类是由 ClassLoaderid + PackageName + ClassName。
 
